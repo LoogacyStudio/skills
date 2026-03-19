@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>12</LangVersion>
+    <RootNamespace>LoogacyStudio.Skills.Godot</RootNamespace>
+    <AssemblyName>LoogacyStudio.Skills.Godot</AssemblyName>
+    <Description>C# utilities and patterns for Godot 4 game development</Description>
+    <Authors>Loogacy Studio</Authors>
+    <Copyright>Copyright (c) 2026 Loogacy Studio</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/LoogacyStudio/skills</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/LoogacyStudio/skills</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>godot;gamedev;csharp;dotnet;utilities</PackageTags>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GodotSharp" Version="4.3.0" />
+  </ItemGroup>
+
+</Project>
