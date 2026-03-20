@@ -12,7 +12,7 @@ For the broader skill format and ecosystem, see [agentskills.io](https://agentsk
 
 This repository currently includes:
 
-- **authoring skills** for creating and maintaining reusable skills
+- **authoring skills** for creating reusable skills and designing reusable subagent topologies
 - **plugin-scoped skills** for Godot/.NET investigation, review, validation, and upgrade planning
 - a layout designed for agents that discover skills directly from the repository
 
@@ -30,6 +30,7 @@ These skills are intended for agent-assisted workflows such as:
 | Skill | Use when | Output |
 | :---- | :------- | :----- |
 | [`create-reusable-skill`](.agents/skills/create-reusable-skill/) | You want to create a new skill or upgrade an existing one without overbuilding it. | A right-sized skill structure, drafted `SKILL.md`, and supporting assets/references when justified. |
+| [`create-subagents`](.agents/skills/create-subagents/) | You need to decide whether a task should stay single-agent or be compiled into a subagent topology with explicit boundaries, orchestration contracts, and runtime-aware overlays. | A recommendation state, topology blueprint, subagent specs, shared-state plan, evaluation checklist, and provider overlays for runtimes such as VS Code / GitHub Copilot and Claude Code. |
 
 ### Plugin: `godot-dotnet`
 
@@ -56,6 +57,11 @@ This repository is intended to be consumed **directly from source**.
 
 If your agent platform supports workspace or repository-based skill discovery, this structure should fit naturally.
 
+## Which core authoring skill should I start with?
+
+- **You want to create or upgrade a reusable skill** → [`create-reusable-skill`](.agents/skills/create-reusable-skill/)
+- **You want to decide whether and how to split work into subagents** → [`create-subagents`](.agents/skills/create-subagents/)
+
 ## Which skill should I start with?
 
 If you are using the `godot-dotnet` plugin set, use this rough routing guide:
@@ -65,6 +71,62 @@ If you are using the `godot-dotnet` plugin set, use this rough routing guide:
 - **You need the smallest useful test plan** → [`test-strategy-review`](plugins/godot-dotnet/skills/test-strategy-review/)
 - **You want UI/UX feedback on a flow, menu, HUD, or tool surface** → [`ui-ux-review`](plugins/godot-dotnet/skills/ui-ux-review/)
 - **You are changing Godot, .NET, SDK, addon, or export pipeline versions** → [`version-upgrade-review`](plugins/godot-dotnet/skills/version-upgrade-review/)
+
+## What the core authoring skills cover
+
+### `create-reusable-skill`
+
+Primary authoring patterns:
+
+1. `Tool Wrapper`
+2. `Generator`
+3. `Reviewer`
+4. `Inversion`
+5. `Pipeline`
+
+Typical outputs:
+
+- a focused `SKILL.md`
+- justified `references/` and `assets/`
+- a pattern decision and validation summary
+
+### `create-subagents`
+
+Primary recommendation states:
+
+1. `no-subagents`
+2. `workflow-first`
+3. `subagents-recommended`
+4. `handoff-required`
+5. `compound-agent-recommended`
+
+Primary topology patterns:
+
+1. `Sequential Pipeline`
+2. `Parallel Fan-out / Fan-in`
+3. `Coordinator / Dispatcher`
+4. `Hierarchical Decomposition`
+5. `Generator / Critic Loop`
+6. `Handoff`
+7. `Human-in-the-loop`
+8. `Workflow-as-Agent / Compound Agent`
+
+Key outputs:
+
+- recommendation summary
+- topology blueprint
+- subagent specs
+- shared state / memory plan
+- orchestration contract
+- evaluation checklist
+- provider overlays
+
+Implementation coverage currently includes:
+
+- provider-neutral architecture guidance
+- VS Code / GitHub Copilot runtime notes
+- Claude Code runtime notes
+- side-by-side example mapping one neutral blueprint into both platforms
 
 ## What each Godot/.NET skill covers
 
@@ -132,15 +194,36 @@ Primary upgrade domains:
 ```text
 .agents/
 └── skills/
-    └── create-reusable-skill/
+    ├── create-reusable-skill/
+    │   ├── SKILL.md
+    │   ├── assets/
+    │   │   ├── intake-questionnaire.md
+    │   │   ├── review-template.md
+    │   │   └── skill-template.md
+    │   └── references/
+    │       ├── pattern-decision-guide.md
+    │       └── skill-review-checklist.md
+    └── create-subagents/
         ├── SKILL.md
         ├── assets/
-        │   ├── intake-questionnaire.md
-        │   ├── review-template.md
-        │   └── skill-template.md
+        │   ├── orchestration-contract-template.md
+        │   ├── provider-overlay-template.md
+        │   ├── subagent-spec-template.md
+        │   └── topology-blueprint-template.md
+        ├── examples/
+        │   ├── coding-team-example.md
+        │   ├── design-review-example.md
+        │   ├── research-team-example.md
+        │   ├── vscode-claude-side-by-side.md
+        │   └── workflow-first-example.md
         └── references/
-            ├── pattern-decision-guide.md
-            └── skill-review-checklist.md
+            ├── anti-patterns.md
+            ├── claude-code-subagents-notes.md
+            ├── context-boundary-checklist.md
+            ├── evaluation-checklist.md
+            ├── handoff-vs-agent-tool.md
+            ├── topology-selection-guide.md
+            └── vscode-copilot-subagents-notes.md
 
 plugins/
 └── godot-dotnet/
