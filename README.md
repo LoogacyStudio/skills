@@ -12,7 +12,7 @@ For information about the Agent Skills standard, see [agentskills.io](https://ag
 
 | Skill                                           | Description                                                                                                                                                                                 |
 | :---------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`create-skill`](.agents/skills/create-skill/) | Creates or upgrades reusable agent skills by selecting the right skill pattern, generating the minimum useful file structure, drafting `SKILL.md`, and validating the result before returning it. |
+| [`create-reusable-skill`](.agents/skills/create-reusable-skill/) | Creates or upgrades reusable agent skills by selecting the right skill pattern, generating the minimum useful file structure, drafting `SKILL.md`, and validating the result before returning it. |
 
 ## Target Stack
 
@@ -34,7 +34,7 @@ Typical scenarios include:
 ```text
 .agents/
 └── skills/
-    └── create-skill/
+    └── create-reusable-skill/
         ├── SKILL.md
         ├── assets/
         │   ├── intake-questionnaire.md

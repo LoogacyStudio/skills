@@ -1,5 +1,5 @@
 ---
-name: create-skill
+name: create-reusable-skill
 description: Creates or upgrades reusable agent skills by selecting the right skill pattern, generating the minimum useful file structure, drafting SKILL.md, and validating the result before returning it. Use when building a new skill, refactoring a weak skill, or scaffolding companion references and assets.
 ---
 
