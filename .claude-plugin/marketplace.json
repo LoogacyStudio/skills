@@ -1,0 +1,13 @@
+{
+    "name": "godot-dotnet",
+    "owner": {
+        "name": "Loogacy Studio"
+    },
+    "plugins": [
+        {
+            "name": "godot-dotnet",
+            "source": "./plugins/godot-dotnet",
+            "description": "Agent skills for Godot 4.6, .NET 10, and C# coding-agent workflows."
+        }
+    ]
+}
