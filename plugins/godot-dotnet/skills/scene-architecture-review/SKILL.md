@@ -186,7 +186,7 @@ The review should:
 
 ## Output contract
 
-Return a review report with these sections:
+Return the result using `assets/review-report.md` in this section order:
 
 - `Context`
 - `Current structure`
@@ -204,6 +204,7 @@ Output rules:
 - provide at least two improvement directions when issues are found
 - discuss testability and change cost explicitly
 - avoid treating pure UX quality problems as architecture problems unless they stem from ownership or coupling
+- keep findings anchored to the report structure so another agent can compare current-state issues against each refactor option cleanly
 
 ## Godot-specific review heuristics
 

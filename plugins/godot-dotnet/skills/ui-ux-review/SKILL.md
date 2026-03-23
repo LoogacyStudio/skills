@@ -235,6 +235,7 @@ The review should include:
 - `Quick wins`
 - `Structural improvements`
 - `Validation ideas`
+- `Recommended next step`
 
 Output rules:
 

@@ -173,17 +173,18 @@ Decision guidance:
 - use **smoke tests** to prove the critical path still boots, loads, and reaches the expected baseline state
 - use **regression checks** to protect the path most likely to break again, especially after upgrades, refactors, or bug fixes
 
-### 5. Produce a minimal test matrix
+### 5. Produce the final strategy and minimal test matrix
 
-Return the matrix using `assets/test-matrix.md`.
+Return the strategy using `assets/test-matrix.md`.
 
-The matrix must:
+The result must:
 
 - include only the most meaningful target areas
 - show whether Godot runtime is required
 - give minimal cases rather than exhaustive suites
 - include regression priority
 - stay concrete enough that another agent can turn it into tests or manual checks
+- keep the short narrative sections aligned with the matrix instead of repeating it loosely
 
 Do not produce a giant backlog unless the user explicitly asks for a full plan.
 
@@ -216,7 +217,7 @@ Keep regression scope narrow and intentional. The goal is to catch repeat breaka
 
 ## Output contract
 
-Return a structured test strategy with these parts:
+Return the result using `assets/test-matrix.md` in this section order:
 
 - `Change summary`
 - `Risk and failure surface`
@@ -234,6 +235,7 @@ Output rules:
 - justify every expensive test layer
 - mention skipped layers when relevant and say why they are skipped
 - prefer a few high-value cases over exhaustive wish lists
+- keep the matrix and surrounding sections aligned so another agent can execute the plan without guessing the missing narrative
 
 ## Cost-awareness rules
 
@@ -256,7 +258,7 @@ If runtime coverage is unavoidable, keep it focused on the exact engine-dependen
 ## Companion files
 
 - `references/testing-notes.md` — guidance for separating pure logic from runtime-dependent coverage, defining scene/integration boundaries, validating UI changes, and planning migration smoke/regression
-- `assets/test-matrix.md` — reusable template for the final test matrix
+- `assets/test-matrix.md` — reusable template for the final test strategy and matrix output
 
 ## Validation
 

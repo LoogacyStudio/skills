@@ -1,5 +1,5 @@
 ---
-name: create-subagents
+name: create-subagent
 description: Use when an agent must decide whether a task should stay single-agent or be compiled into a reusable multi-agent topology with explicit subagent roles, context boundaries, orchestration contracts, and provider-specific implementation overlays.
 ---
 

@@ -204,7 +204,7 @@ The plan should:
 
 ## Output contract
 
-Return a structured upgrade review with these parts:
+Return the result using `assets/upgrade-plan.md` in this section order:
 
 - `Current state`
 - `Target state`
@@ -222,6 +222,7 @@ Output rules:
 - do not treat migration work as ordinary bug fixing
 - do not stop at version numbers; always include validation and rollback thinking
 - mention third-party dependencies explicitly when they materially affect risk
+- keep the output staged and section-aligned so each upgrade step has an obvious validation and rollback context
 
 ## Upgrade heuristics
 

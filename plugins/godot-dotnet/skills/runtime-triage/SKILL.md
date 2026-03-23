@@ -188,9 +188,7 @@ If evidence is still weak, keep this section short and frame it as a probe plan 
 
 ## Output contract
 
-Return a triage report using `assets/runtime-triage-report.md`.
-
-The report should include:
+Return the result using `assets/runtime-triage-report.md` in this section order:
 
 - `Symptom summary`
 - `Probable layer`
@@ -208,6 +206,7 @@ Output rules:
 - keep likely causes to 2–4 items unless the case is truly ambiguous
 - separate known facts from inferred causes
 - if evidence is missing, say exactly what is missing and why it matters
+- keep the section order stable so the triage report is easy to scan and compare across cases
 
 ## Investigation heuristics
 

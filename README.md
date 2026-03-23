@@ -1,42 +1,73 @@
 # Loogacy Agent Skills
 
-Reusable **Agent Skills** for coding agents working on **Godot 4.6**, **.NET 10**, and **C#** projects.
+Reusable agent skills for coding agents working on Godot 4.6, .NET 10, and C# projects.
 
 For the broader skill format and ecosystem, see [agentskills.io](https://agentskills.io/).
 
 > [!NOTE]
-> This repository is **not** a runtime gameplay library, addon, or NuGet package.
-> It is a source-controlled collection of reusable agent instructions, reference material, and report templates.
+> This repository is not a runtime gameplay library, addon, or NuGet package.
+> It is a versioned collection of reusable agent instructions, reference notes, report templates, and plugin-scoped internal workers.
 
-## Overview
+## Quick start
 
-This repository currently includes:
+This repository is meant to be consumed directly from source.
 
-- **authoring skills** for creating reusable skills and designing reusable subagent topologies
-- **plugin-scoped skills** for Godot/.NET investigation, review, validation, and upgrade planning
-- a layout designed for agents that discover skills directly from the repository
+1. Make the repository available to your coding agent.
+2. Ensure the agent can discover skill folders under `.agents/skills/` and `plugins/*/skills/`.
+3. If your runtime supports plugin-scoped agents, also expose `plugins/*/agents/`.
+4. Route the task to the right skill or internal worker for the job.
+5. When adding new material, place standalone authoring skills under `.agents/skills/<skill-name>/` and plugin-specific material under `plugins/<plugin-name>/`.
 
-These skills are intended for agent-assisted workflows such as:
+Practical rule of thumb:
+
+- use **skills** when one agent can safely keep the whole task context
+- use **internal workers** when you want bounded, reusable, read-only specialist output without polluting the main conversation
+
+## What this repo is for
+
+This repo does two jobs.
+
+- It keeps a small set of **authoring skills** for building new skills and designing subagent topologies.
+- It packages a **Godot/.NET plugin set** for investigation, review, validation, and upgrade planning.
+
+In practice, this is for agent-assisted work like:
 
 - Godot gameplay and systems programming
 - Godot editor tooling and project maintenance
-- C# architecture and review workflows
+- C# architecture and review work
 - reusable conventions for agent-driven development
 
-## Skill Catalog
+## What is included
 
 ### Core authoring skills
 
-| Skill | Use when | Output |
-| :---- | :------- | :----- |
-| [`create-reusable-skill`](.agents/skills/create-reusable-skill/) | You want to create a new skill or upgrade an existing one without overbuilding it. | A right-sized skill structure, drafted `SKILL.md`, and supporting assets/references when justified. |
-| [`create-subagents`](.agents/skills/create-subagents/) | You need to decide whether a task should stay single-agent or be compiled into a subagent topology with explicit boundaries, orchestration contracts, and runtime-aware overlays. | A recommendation state, topology blueprint, subagent specs, shared-state plan, evaluation checklist, and provider overlays for runtimes such as VS Code / GitHub Copilot and Claude Code. |
+| Skill | Use when | Main output |
+| :---- | :------- | :---------- |
+| [`create-reusable-skill`](.agents/skills/create-reusable-skill/) | You want to create a new skill or tighten up an existing one without overbuilding it. | A right-sized skill structure, drafted `SKILL.md`, and support files only when they are actually justified. |
+| [`create-subagents`](.agents/skills/create-subagents/) | You need to decide whether a task should stay single-agent or be split into a bounded subagent topology. | A recommendation state, topology blueprint, subagent specs, shared-state plan, evaluation checklist, and provider overlays. |
 
 ### Plugin: `godot-dotnet`
 
-`plugins/godot-dotnet/plugin.json`
+Source of truth: [`plugins/godot-dotnet/plugin.json`](plugins/godot-dotnet/plugin.json)
 
-Description: Agent skills for Godot 4.6, .NET 10, and C# coding-agent workflows.
+This plugin has two layers of its own:
+
+1. reusable skills
+2. plugin-scoped internal workers
+
+If you want the deeper breakdown, read [`plugins/godot-dotnet/README.md`](plugins/godot-dotnet/README.md). The root README is the front desk; the plugin README is where the real tour starts.
+
+#### Plugin-scoped internal workers
+
+These are read-only internal workers meant for coordinator-driven delegation.
+
+| Agent | Use when | Composes | Main output |
+| :---- | :------- | :------- | :---------- |
+| [`runtime-investigator`](plugins/godot-dotnet/agents/runtime-investigator.agent.md) | A project is broken and the first failing layer is still unclear. | `runtime-triage` plus validation-minded support | An evidence-led triage report with ranked hypotheses, evidence gaps, next probe, and verification steps. |
+| [`design-reviewer`](plugins/godot-dotnet/agents/design-reviewer.agent.md) | A scene, system, HUD, menu, or flow needs a combined maintainability and UX review. | `scene-architecture-review`, `ui-ux-review`, and validation support | A structured design review with an architecture-vs-UX split, prioritized recommendations, and validation ideas. |
+| [`migration-quality-planner`](plugins/godot-dotnet/agents/migration-quality-planner.agent.md) | A Godot/.NET/addon/export-chain upgrade needs staged migration planning plus quality validation. | `version-upgrade-review`, `test-strategy-review`, and optional triage support | A migration-quality plan with impact summary, risk matrix, staged sequence, smoke/regression planning, and rollback thinking. |
+
+#### Plugin skills
 
 | Skill | Start here when | Main focus |
 | :---- | :-------------- | :--------- |
@@ -46,25 +77,22 @@ Description: Agent skills for Godot 4.6, .NET 10, and C# coding-agent workflows.
 | [`ui-ux-review`](plugins/godot-dotnet/skills/ui-ux-review/) | A HUD, menu, overlay, or interaction flow needs usability review. | Evaluate hierarchy, clarity, feedback, readability, and cognitive load with practical improvements. |
 | [`version-upgrade-review`](plugins/godot-dotnet/skills/version-upgrade-review/) | You are planning a Godot/.NET upgrade and want to sequence it safely. | Identify risk areas, stage the migration, define validation checkpoints, and think through rollback early. |
 
-## Quick Start
+## Where to start
 
-This repository is intended to be consumed **directly from source**.
-
-1. Make the repository available to your coding agent.
-2. Ensure the agent can discover skill folders under `.agents/skills/` and `plugins/*/skills/`.
-3. Reference or invoke the relevant skill for the task at hand.
-4. For new skills, add standalone skills under `.agents/skills/<skill-name>/` or plugin-specific skills under `plugins/<plugin-name>/skills/<skill-name>/`.
-
-If your agent platform supports workspace or repository-based skill discovery, this structure should fit naturally.
-
-## Which core authoring skill should I start with?
+### If you are working on authoring the agent system itself
 
 - **You want to create or upgrade a reusable skill** → [`create-reusable-skill`](.agents/skills/create-reusable-skill/)
 - **You want to decide whether and how to split work into subagents** → [`create-subagents`](.agents/skills/create-subagents/)
 
-## Which skill should I start with?
+### If you are using the `godot-dotnet` plugin set
 
-If you are using the `godot-dotnet` plugin set, use this rough routing guide:
+If your runtime supports plugin-scoped agents:
+
+- **Something is broken and the root cause is unclear** → [`runtime-investigator`](plugins/godot-dotnet/agents/runtime-investigator.agent.md)
+- **A scene/system/UI flow needs maintainability plus UX review together** → [`design-reviewer`](plugins/godot-dotnet/agents/design-reviewer.agent.md)
+- **You are planning an upgrade and need smoke, regression, and rollback thinking too** → [`migration-quality-planner`](plugins/godot-dotnet/agents/migration-quality-planner.agent.md)
+
+If your runtime only consumes skills directly:
 
 - **Something is broken and the root cause is unclear** → [`runtime-triage`](plugins/godot-dotnet/skills/runtime-triage/)
 - **A scene or system needs structural review before refactoring** → [`scene-architecture-review`](plugins/godot-dotnet/skills/scene-architecture-review/)
@@ -72,202 +100,39 @@ If you are using the `godot-dotnet` plugin set, use this rough routing guide:
 - **You want UI/UX feedback on a flow, menu, HUD, or tool surface** → [`ui-ux-review`](plugins/godot-dotnet/skills/ui-ux-review/)
 - **You are changing Godot, .NET, SDK, addon, or export pipeline versions** → [`version-upgrade-review`](plugins/godot-dotnet/skills/version-upgrade-review/)
 
-## What the core authoring skills cover
+## How the pieces fit together
 
-### `create-reusable-skill`
+The three plugin workers each have a clear job:
 
-Primary authoring patterns:
+- `runtime-investigator` handles failure framing.
+- `design-reviewer` handles structure and UX review together.
+- `migration-quality-planner` handles upgrade risk and validation planning.
 
-1. `Tool Wrapper`
-2. `Generator`
-3. `Reviewer`
-4. `Inversion`
-5. `Pipeline`
+They are intentionally read-only. They do not replace implementation agents. Their job is to improve decisions before fixes, refactors, or upgrades begin.
 
-Typical outputs:
+The underlying skills stay useful on their own when a runtime does not support subagents or when one agent can safely keep the whole task context. If you want the full review dimensions, templates, or plugin-specific structure, use the plugin README and the individual skill folders instead of treating this page like the entire manual.
 
-- a focused `SKILL.md`
-- justified `references/` and `assets/`
-- a pattern decision and validation summary
-
-### `create-subagents`
-
-Primary recommendation states:
-
-1. `no-subagents`
-2. `workflow-first`
-3. `subagents-recommended`
-4. `handoff-required`
-5. `compound-agent-recommended`
-
-Primary topology patterns:
-
-1. `Sequential Pipeline`
-2. `Parallel Fan-out / Fan-in`
-3. `Coordinator / Dispatcher`
-4. `Hierarchical Decomposition`
-5. `Generator / Critic Loop`
-6. `Handoff`
-7. `Human-in-the-loop`
-8. `Workflow-as-Agent / Compound Agent`
-
-Key outputs:
-
-- recommendation summary
-- topology blueprint
-- subagent specs
-- shared state / memory plan
-- orchestration contract
-- evaluation checklist
-- provider overlays
-
-Implementation coverage currently includes:
-
-- provider-neutral architecture guidance
-- VS Code / GitHub Copilot runtime notes
-- Claude Code runtime notes
-- side-by-side example mapping one neutral blueprint into both platforms
-
-## What each Godot/.NET skill covers
-
-### `runtime-triage`
-
-Primary problem layers:
-
-1. `build / compile`
-2. `.NET project / SDK / restore`
-3. `Godot editor configuration`
-4. `scene / resource loading`
-5. `runtime exception / logic bug`
-6. `environment / version / tooling mismatch`
-
-### `scene-architecture-review`
-
-Primary review dimensions:
-
-1. `scene split reasonableness`
-2. `node hierarchy responsibility load`
-3. `script ownership clarity`
-4. `signal health and communication style`
-5. `autoload / singleton fit vs overuse`
-6. `UI and gameplay coupling depth`
-7. `scene reusable boundary clarity`
-
-### `test-strategy-review`
-
-Primary testing layers:
-
-1. `pure C# logic tests`
-2. `Godot runtime-dependent tests`
-3. `scene / integration tests`
-4. `UI / flow / interaction validation`
-5. `smoke tests`
-6. `regression checks`
-
-### `ui-ux-review`
-
-Primary review dimensions:
-
-1. `information hierarchy`
-2. `user focus / attention flow`
-3. `interaction clarity`
-4. `state feedback`
-5. `cognitive load`
-6. `consistency`
-7. `readability / density`
-8. `critical action discoverability`
-
-### `version-upgrade-review`
-
-Primary upgrade domains:
-
-1. `Godot engine version`
-2. `.NET SDK and project target changes`
-3. `C# compatibility implications`
-4. `addon / plugin compatibility`
-5. `export pipeline implications`
-6. `verification strategy`
-7. `rollback / branch strategy`
-
-## Repository Layout
+## Repository layout
 
 ```text
 .agents/
-└── skills/
-    ├── create-reusable-skill/
-    │   ├── SKILL.md
-    │   ├── assets/
-    │   │   ├── intake-questionnaire.md
-    │   │   ├── review-template.md
-    │   │   └── skill-template.md
-    │   └── references/
-    │       ├── pattern-decision-guide.md
-    │       └── skill-review-checklist.md
-    └── create-subagents/
-        ├── SKILL.md
-        ├── assets/
-        │   ├── orchestration-contract-template.md
-        │   ├── provider-overlay-template.md
-        │   ├── subagent-spec-template.md
-        │   └── topology-blueprint-template.md
-        ├── examples/
-        │   ├── coding-team-example.md
-        │   ├── design-review-example.md
-        │   ├── research-team-example.md
-        │   ├── vscode-claude-side-by-side.md
-        │   └── workflow-first-example.md
-        └── references/
-            ├── anti-patterns.md
-            ├── claude-code-subagents-notes.md
-            ├── context-boundary-checklist.md
-            ├── evaluation-checklist.md
-            ├── handoff-vs-agent-tool.md
-            ├── topology-selection-guide.md
-            └── vscode-copilot-subagents-notes.md
+└── skills/                 # repo-wide authoring skills
 
 plugins/
 └── godot-dotnet/
-    ├── plugin.json
-    └── skills/
-        ├── runtime-triage/
-        │   ├── SKILL.md
-        │   ├── assets/
-        │   │   └── runtime-triage-report.md
-        │   └── references/
-        │       └── triage-categories.md
-        ├── scene-architecture-review/
-        │   ├── SKILL.md
-        │   ├── assets/
-        │   │   └── review-report.md
-        │   └── references/
-        │       └── godot-architecture-notes.md
-        ├── test-strategy-review/
-        │   ├── SKILL.md
-        │   ├── assets/
-        │   │   └── test-matrix.md
-        │   └── references/
-        │       └── testing-notes.md
-        ├── ui-ux-review/
-        │   ├── SKILL.md
-        │   ├── assets/
-        │   │   └── ui-ux-review-template.md
-        │   └── references/
-        │       └── ui-ux-rubric.md
-        └── version-upgrade-review/
-            ├── SKILL.md
-            ├── assets/
-            │   └── upgrade-plan.md
-            └── references/
-                └── migration-notes.md
+    ├── plugin.json         # plugin metadata
+    ├── README.md           # plugin-specific usage guide
+    ├── agents/             # internal workers
+    └── skills/             # Godot/.NET reusable skills
 ```
 
-Each skill typically uses:
+Inside a typical skill folder, you will usually see:
 
 - `SKILL.md` for the main operating instructions
 - `references/` for reusable guidance, heuristics, and checklists
 - `assets/` for templates, examples, and report skeletons
 
-## Authoring Guidelines
+## Authoring guidelines
 
 When adding or updating skills:
 
