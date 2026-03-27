@@ -10,13 +10,13 @@ For the broader skill format and ecosystem, see [agentskills.io](https://agentsk
 
 ## Quick start
 
-This repository is meant to be consumed directly from source.
+Use this repository straight from source.
 
 1. Make the repository available to your coding agent.
-2. Ensure the agent can discover skill folders under `.agents/skills/` and `plugins/*/skills/`.
+2. Ensure the agent can discover skill folders under `.agents/skills/`, `.github/skills/`, and `plugins/*/skills/`.
 3. If your runtime supports plugin-scoped agents, also expose `plugins/*/agents/`.
 4. Route the task to the right skill or internal worker for the job.
-5. When adding new material, place standalone authoring skills under `.agents/skills/<skill-name>/` and plugin-specific material under `plugins/<plugin-name>/`.
+5. When adding new material, place standalone authoring skills under `.agents/skills/<skill-name>/`, repo-shared benchmark/eval skills under `.github/skills/<skill-name>/`, repo-level benchmark corpus / run evidence outside `plugins/`, and plugin-specific material under `plugins/<plugin-name>/`.
 
 Practical rule of thumb:
 
@@ -25,9 +25,10 @@ Practical rule of thumb:
 
 ## What this repo is for
 
-This repo does two jobs.
+This repo does three related jobs.
 
 - It keeps a small set of **authoring skills** for building new skills and designing subagent topologies.
+- It keeps a **repo-level benchmark/eval skill layer and corpus** for benchmark authoring, judging, variants, clustering, and gate review.
 - It packages a **Godot/.NET plugin set** for investigation, review, validation, and upgrade planning.
 
 In practice, this is for agent-assisted work like:
@@ -44,79 +45,75 @@ In practice, this is for agent-assisted work like:
 | Skill | Use when | Main output |
 | :---- | :------- | :---------- |
 | [`create-reusable-skill`](.agents/skills/create-reusable-skill/) | You want to create a new skill or tighten up an existing one without overbuilding it. | A right-sized skill structure, drafted `SKILL.md`, and support files only when they are actually justified. |
-| [`create-subagents`](.agents/skills/create-subagents/) | You need to decide whether a task should stay single-agent or be split into a bounded subagent topology. | A recommendation state, topology blueprint, subagent specs, shared-state plan, evaluation checklist, and provider overlays. |
+| [`create-subagent`](.agents/skills/create-subagent/) | You need to decide whether a task should stay single-agent or be split into a bounded subagent topology. | A recommendation state, topology blueprint, subagent specs, shared-state plan, evaluation checklist, and provider overlays. |
+| [`plan-design-grill`](.agents/skills/plan-design-grill/) | You want an agent to interrogate a plan or design until assumptions, branch decisions, risks, and proof points are explicit. | A structured grill summary with resolved decisions, open branches, fragile assumptions, and recommended next steps. |
+
+### Repo benchmark skills
+
+These are repo-shared benchmark and eval workflow skills that sit above the `godot-dotnet` canonical corpus in [`evals/godot-dotnet/`](evals/godot-dotnet/README.md) and below full agent orchestration.
+
+If you want the corpus index first, start from [`evals/README.md`](evals/README.md).
+
+| Skill | Use when | Main output |
+| :---- | :------- | :---------- |
+| [`benchmark-author-item`](.github/skills/benchmark-author-item/) | You want to turn a benchmark idea or ad hoc eval case into the repository's canonical benchmark-item format. | A reusable benchmark item draft with route, artifact, scoring, and variant hooks. |
+| [`benchmark-judge-run`](.github/skills/benchmark-judge-run/) | You want to convert an execution result into a route-first judged run record. | A scored benchmark run record with failure tags and invariance / robustness notes. |
+| [`benchmark-review-candidate`](.github/skills/benchmark-review-candidate/) | You want to review whether a candidate revision can be promoted under the repo's gate rules. | A canonical candidate review record with explicit promotion decision. |
+| [`benchmark-author-variants`](.github/skills/benchmark-author-variants/) | You want to author metamorphic or adversarial variant packs from the shared family catalog. | A reusable `variant_bundle` with invariants, drift budget, and transformed inputs. |
+| [`benchmark-cluster-failures`](.github/skills/benchmark-cluster-failures/) | You want to cluster repeated judged failures into reusable repair-oriented patterns. | A canonical failure cluster record with taxonomy-aligned failure patterns. |
 
 ### Plugin: `godot-dotnet`
 
 Source of truth: [`plugins/godot-dotnet/plugin.json`](plugins/godot-dotnet/plugin.json)
 
-This plugin has two layers of its own:
+This plugin has two layers:
 
-1. reusable skills
-2. plugin-scoped internal workers
+1. reusable skills for narrow review and planning work
+2. plugin-scoped internal workers for mixed or higher-structure tasks
 
-If you want the deeper breakdown, read [`plugins/godot-dotnet/README.md`](plugins/godot-dotnet/README.md). The root README is the front desk; the plugin README is where the real tour starts.
+If you want the full breakdown, read [`plugins/godot-dotnet/README.md`](plugins/godot-dotnet/README.md). This root README is only the front desk.
 
-#### Plugin-scoped internal workers
+Quick picks:
 
-These are read-only internal workers meant for coordinator-driven delegation.
-
-| Agent | Use when | Composes | Main output |
-| :---- | :------- | :------- | :---------- |
-| [`runtime-investigator`](plugins/godot-dotnet/agents/runtime-investigator.agent.md) | A project is broken and the first failing layer is still unclear. | `runtime-triage` plus validation-minded support | An evidence-led triage report with ranked hypotheses, evidence gaps, next probe, and verification steps. |
-| [`design-reviewer`](plugins/godot-dotnet/agents/design-reviewer.agent.md) | A scene, system, HUD, menu, or flow needs a combined maintainability and UX review. | `scene-architecture-review`, `ui-ux-review`, and validation support | A structured design review with an architecture-vs-UX split, prioritized recommendations, and validation ideas. |
-| [`migration-quality-planner`](plugins/godot-dotnet/agents/migration-quality-planner.agent.md) | A Godot/.NET/addon/export-chain upgrade needs staged migration planning plus quality validation. | `version-upgrade-review`, `test-strategy-review`, and optional triage support | A migration-quality plan with impact summary, risk matrix, staged sequence, smoke/regression planning, and rollback thinking. |
-
-#### Plugin skills
-
-| Skill | Start here when | Main focus |
-| :---- | :-------------- | :--------- |
-| [`runtime-triage`](plugins/godot-dotnet/skills/runtime-triage/) | The project is failing, crashing, misbehaving, or the failure layer is still unclear. | Classify the issue, ask for the minimum missing evidence, rank likely causes, and suggest the smallest next probe. |
-| [`scene-architecture-review`](plugins/godot-dotnet/skills/scene-architecture-review/) | A Godot scene or system feels messy, overloaded, or hard to change safely. | Review scene composition, ownership boundaries, signals, autoload fit, reuse boundaries, and refactor options. |
-| [`test-strategy-review`](plugins/godot-dotnet/skills/test-strategy-review/) | You need a cost-aware validation plan before or alongside implementation. | Separate pure .NET tests from Godot runtime coverage and produce a minimal test matrix with priorities. |
-| [`ui-ux-review`](plugins/godot-dotnet/skills/ui-ux-review/) | A HUD, menu, overlay, or interaction flow needs usability review. | Evaluate hierarchy, clarity, feedback, readability, and cognitive load with practical improvements. |
-| [`version-upgrade-review`](plugins/godot-dotnet/skills/version-upgrade-review/) | You are planning a Godot/.NET upgrade and want to sequence it safely. | Identify risk areas, stage the migration, define validation checkpoints, and think through rollback early. |
+- **Plugin-scoped workers:** [`runtime-investigator`](plugins/godot-dotnet/agents/runtime-investigator.agent.md), [`design-reviewer`](plugins/godot-dotnet/agents/design-reviewer.agent.md), [`migration-quality-planner`](plugins/godot-dotnet/agents/migration-quality-planner.agent.md)
+- **Direct skills:** [`runtime-triage`](plugins/godot-dotnet/skills/runtime-triage/), [`scene-architecture-review`](plugins/godot-dotnet/skills/scene-architecture-review/), [`abstraction-integrity-review`](plugins/godot-dotnet/skills/abstraction-integrity-review/), [`test-strategy-review`](plugins/godot-dotnet/skills/test-strategy-review/), [`post-change-review`](plugins/godot-dotnet/skills/post-change-review/), [`ui-ux-review`](plugins/godot-dotnet/skills/ui-ux-review/), [`version-upgrade-review`](plugins/godot-dotnet/skills/version-upgrade-review/)
 
 ## Where to start
 
 ### If you are working on authoring the agent system itself
 
 - **You want to create or upgrade a reusable skill** → [`create-reusable-skill`](.agents/skills/create-reusable-skill/)
-- **You want to decide whether and how to split work into subagents** → [`create-subagents`](.agents/skills/create-subagents/)
+- **You want to decide whether and how to split work into subagents** → [`create-subagent`](.agents/skills/create-subagent/)
+- **You want an agent to stress-test a plan or design by grilling it branch by branch** → [`plan-design-grill`](.agents/skills/plan-design-grill/)
+
+### If you are working on benchmark authoring, judging, or eval governance in this repo
+
+- **You want to author or normalize a benchmark item** → [`benchmark-author-item`](.github/skills/benchmark-author-item/)
+- **You want to judge an execution record into the canonical run-review format** → [`benchmark-judge-run`](.github/skills/benchmark-judge-run/)
+- **You want to author a metamorphic or adversarial variant pack** → [`benchmark-author-variants`](.github/skills/benchmark-author-variants/)
+- **You want to cluster repeated judged failures** → [`benchmark-cluster-failures`](.github/skills/benchmark-cluster-failures/)
+- **You want to review whether a candidate revision should be promoted** → [`benchmark-review-candidate`](.github/skills/benchmark-review-candidate/)
 
 ### If you are using the `godot-dotnet` plugin set
 
-If your runtime supports plugin-scoped agents:
+Start with [`plugins/godot-dotnet/README.md`](plugins/godot-dotnet/README.md) if the repo task is mainly about Godot/.NET review, validation, or upgrade planning.
 
-- **Something is broken and the root cause is unclear** → [`runtime-investigator`](plugins/godot-dotnet/agents/runtime-investigator.agent.md)
-- **A scene/system/UI flow needs maintainability plus UX review together** → [`design-reviewer`](plugins/godot-dotnet/agents/design-reviewer.agent.md)
-- **You are planning an upgrade and need smoke, regression, and rollback thinking too** → [`migration-quality-planner`](plugins/godot-dotnet/agents/migration-quality-planner.agent.md)
+If you already know the route you want:
 
-If your runtime only consumes skills directly:
-
-- **Something is broken and the root cause is unclear** → [`runtime-triage`](plugins/godot-dotnet/skills/runtime-triage/)
-- **A scene or system needs structural review before refactoring** → [`scene-architecture-review`](plugins/godot-dotnet/skills/scene-architecture-review/)
-- **You need the smallest useful test plan** → [`test-strategy-review`](plugins/godot-dotnet/skills/test-strategy-review/)
-- **You want UI/UX feedback on a flow, menu, HUD, or tool surface** → [`ui-ux-review`](plugins/godot-dotnet/skills/ui-ux-review/)
-- **You are changing Godot, .NET, SDK, addon, or export pipeline versions** → [`version-upgrade-review`](plugins/godot-dotnet/skills/version-upgrade-review/)
-
-## How the pieces fit together
-
-The three plugin workers each have a clear job:
-
-- `runtime-investigator` handles failure framing.
-- `design-reviewer` handles structure and UX review together.
-- `migration-quality-planner` handles upgrade risk and validation planning.
-
-They are intentionally read-only. They do not replace implementation agents. Their job is to improve decisions before fixes, refactors, or upgrades begin.
-
-The underlying skills stay useful on their own when a runtime does not support subagents or when one agent can safely keep the whole task context. If you want the full review dimensions, templates, or plugin-specific structure, use the plugin README and the individual skill folders instead of treating this page like the entire manual.
+- mixed or higher-structure work → one of the plugin-scoped workers
+- narrow review or planning work → one of the plugin skills
 
 ## Repository layout
 
 ```text
+.github/
+└── skills/                 # repo-shared benchmark/eval workflow skills
+
 .agents/
 └── skills/                 # repo-wide authoring skills
+
+evals/
+└── godot-dotnet/           # repo-level canonical eval corpus
 
 plugins/
 └── godot-dotnet/
@@ -131,6 +128,8 @@ Inside a typical skill folder, you will usually see:
 - `SKILL.md` for the main operating instructions
 - `references/` for reusable guidance, heuristics, and checklists
 - `assets/` for templates, examples, and report skeletons
+
+Going forward, treat `plugins/` as the market-facing surface only. Benchmark corpora, run evidence, and other repo-local eval material should live outside plugin folders; the `godot-dotnet` eval corpus now lives under [`evals/godot-dotnet/`](evals/godot-dotnet/README.md).
 
 ## Authoring guidelines
 

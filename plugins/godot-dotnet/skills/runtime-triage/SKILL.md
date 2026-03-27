@@ -1,6 +1,6 @@
 ---
 name: runtime-triage
-description: Use when a Godot/.NET project has a build failure, editor error, runtime exception, crash, scene load failure, startup failure, or unexplained bad behavior and the agent must classify the symptom, identify the most likely layer, request only the minimum missing evidence, and return a focused triage report.
+description: Use when a Godot/.NET project has a build failure, editor error, runtime exception, crash, scene load failure, startup failure, or unexplained bad behavior and the agent must classify the symptom, identify the most likely layer, request only the minimum missing evidence, and return a focused triage report before broader investigation structure is justified.
 ---
 
 # Runtime Triage
@@ -8,6 +8,8 @@ description: Use when a Godot/.NET project has a build failure, editor error, ru
 Use this skill when a Godot 4.6 + .NET/C# project is broken, noisy, crashing, or behaving incorrectly and the failure layer is not yet clear.
 
 This is the first-response skill for Godot/.NET troubleshooting. Its job is not to guess wildly or jump straight into edits. Its job is to turn messy symptoms into a grounded triage report with the smallest useful next step.
+
+Prefer this skill when the task is still narrow and evidence-led, and the best next move is one focused diagnosis rather than a broader investigation worker.
 
 ## Purpose
 

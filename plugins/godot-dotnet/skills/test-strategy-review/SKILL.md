@@ -11,6 +11,8 @@ This skill is for deciding **what to test first, what can stay in pure .NET, wha
 
 It does **not** exist to dump a giant wish list or teach one specific test framework. Its job is to turn a change into a focused, layered, cost-aware validation plan.
 
+Prefer this skill when the main deliverable is a bounded validation plan, even if some scene or seam context matters. If the request truly needs a combined architecture + UX review artifact, that is a different route.
+
 ## Purpose
 
 This skill is used to:

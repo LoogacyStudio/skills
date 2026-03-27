@@ -9,6 +9,8 @@ Use this skill when a Godot + .NET/C# project needs a **risk-aware upgrade plan*
 
 This skill is for planning and reviewing upgrades, not for blindly editing every versioned file and hoping the build gods are in a good mood.
 
+Prefer this skill when one strong staged upgrade artifact is enough. Escalate only when explicit migration-quality structure, rollback triggers, and checkpoint-heavy validation are core parts of the ask.
+
 Its job is to:
 
 - identify the upgrade type and blast radius
