@@ -32,10 +32,10 @@ Typical requests:
 
 ### Trigger examples
 
-- "幫我將呢批 judged runs 做 failure clustering"
-- "整理 repeated F1-F10 patterns"
-- "將 route wrong 同 drift under invariance 分群"
-- "做一份 failure cluster report"
+- "Help me cluster this batch of judged runs"
+- "Organize the repeated F1-F10 patterns"
+- "Group the route-wrong and drift-under-invariance cases"
+- "Draft a failure cluster report"
 
 ## Do not use this skill when
 

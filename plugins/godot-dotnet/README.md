@@ -1,8 +1,8 @@
 # `godot-dotnet` Plugin
 
-Reusable agent skills for **Godot 4.6**, **.NET 10**, and **C#** workflows.
+Reusable agent skills for **Godot 4.6**, **.NET 10**, `.tscn` scene-text, and **C#** workflows.
 
-This plugin collects a focused set of review and planning skills for Godot/.NET projects. It is meant for coding agents that need stronger judgment around troubleshooting, scene architecture, testing strategy, UI/UX quality, and upgrade planning.
+This plugin collects a focused set of implementation-guidance, review, and planning skills for Godot/.NET projects. It is meant for coding agents that need stronger judgment around idiomatic Godot C# code, direct `.tscn` scene-file work, troubleshooting, scene architecture, testing strategy, UI/UX quality, and upgrade planning.
 
 > [!NOTE]
 > This plugin is **not** a Godot addon, runtime library, or NuGet package.
@@ -19,7 +19,7 @@ Use this split when deciding where to start:
 - **Corpus context and stored evidence** → [`../../evals/godot-dotnet/README.md`](../../evals/godot-dotnet/README.md) for canonical docs by role, active manifests, bounded slices, and benchmark/run-evidence entry points.
 - **Plugin surface itself** → this README plus [`./agents/`](./agents/) and [`./skills/`](./skills/) for shipped plugin skills, shipped plugin-scoped workers, and market-facing payload boundaries.
 
-If you're new here, the short version is simple: use a **skill** for narrow review or planning work, and use a plugin-scoped **worker** when the task genuinely mixes dimensions and benefits from stronger structure.
+If you're new here, the short version is simple: use a **skill** for narrow implementation, review, or planning work, and use a plugin-scoped **worker** when the task genuinely mixes dimensions and benefits from stronger structure.
 
 ## What this plugin is for
 
@@ -28,10 +28,12 @@ Use `godot-dotnet` when an agent is working in a Godot project that uses:
 - Godot scenes and node hierarchies
 - C# gameplay, tools, or editor-side code
 - .NET SDK / project / package workflows
-- review-heavy tasks where the right next step matters more than immediately editing files
+- implementation-heavy or review-heavy tasks where the right next step matters as much as the next edit
 
 The skills in this plugin are designed to help agents:
 
+- implement idiomatic Godot C# that respects the engine's binding surface and editor workflow
+- read and edit `.tscn` scene files without breaking resource, node-path, or connection integrity
 - classify failures before making risky fixes
 - review scene and system boundaries with Godot-specific concerns in mind
 - choose practical, layered test coverage
@@ -42,7 +44,7 @@ The skills in this plugin are designed to help agents:
 
 This plugin has two layers:
 
-1. **Reusable skills** — portable review/planning methods
+1. **Reusable skills** — portable implementation/review/planning methods
 2. **Internal workers** — read-only plugin-scoped agents in [`./agents/`](./agents/) that compose those skills into bounded specialist roles
 
 ### Internal workers
@@ -64,6 +66,8 @@ These are the only plugin-scoped internal workers currently shipped in `plugins/
 
 | Skill | Use when | Main output |
 | :---- | :------- | :---------- |
+| [`godot-csharp`](./skills/godot-csharp/) | A task involves writing, refactoring, or translating Godot C# code and the agent must stay idiomatic to Godot's C# API instead of drifting into generic .NET or GDScript habits. | A structured implementation brief covering engine context, recommended patterns, API mapping notes, pitfalls, and validation / rebuild steps. |
+| [`godot-tscn`](./skills/godot-tscn/) | A task involves reading, editing, generating, or reviewing `.tscn` scene files directly and the agent must preserve scene-file structure instead of treating it as generic text. | A structured scene-edit brief covering file structure, reference surfaces, safe edit steps, risks, and validation. |
 | [`runtime-triage`](./skills/runtime-triage/) | A Godot/.NET project is broken, noisy, crashing, or behaving incorrectly and the failure layer is still unclear. | A focused triage report with likely layers, ranked causes, missing evidence, and the smallest useful next probe. |
 | [`scene-architecture-review`](./skills/scene-architecture-review/) | A scene, UI flow, or gameplay system feels overloaded, tightly coupled, or hard to change safely. | A structured architecture review with findings, risk areas, and concrete refactor directions. |
 | [`abstraction-integrity-review`](./skills/abstraction-integrity-review/) | A feature extension, touched-code refactor, or in-flight implementation is starting to stretch an abstraction through flags, boundary leakage, compatibility drag, or responsibility drift. | A structured abstraction-health review with decay risks, containment options, and a clear integrity verdict. |
@@ -89,6 +93,8 @@ These are the only plugin-scoped internal workers currently shipped in `plugins/
 
 ### If your runtime only consumes skills directly
 
+- **You need to implement or refactor Godot C# code without drifting into GDScript-first or generic .NET patterns** → [`godot-csharp`](./skills/godot-csharp/)
+- **You need to read, edit, or review a `.tscn` scene file without breaking structure or references** → [`godot-tscn`](./skills/godot-tscn/)
 - **Something is failing and you need a focused first-response diagnosis** → [`runtime-triage`](./skills/runtime-triage/)
 - **A scene or system feels structurally messy** → [`scene-architecture-review`](./skills/scene-architecture-review/)
 - **A feature or refactor is stretching an abstraction through flags, branching, or compatibility drag** → [`abstraction-integrity-review`](./skills/abstraction-integrity-review/)
@@ -112,6 +118,8 @@ It reflects the current repo evidence for when `godot-dotnet` should stay on a n
 
 | Task shape | Usually stronger route | Why |
 | :--------- | :--------------------- | :-- |
+| idiomatic Godot C# implementation or refactor with engine-facing API choices | skill (`godot-csharp`) | The narrow route is best when the main risk is choosing the wrong binding, lifecycle, export, signal, or collection pattern. |
+| direct `.tscn` scene-file edit, merge fix, or file-aware diff review | skill (`godot-tscn`) | The narrow route is best when the main risk is breaking section order, resource IDs, parent paths, `NodePath`s, or connections. |
 | narrow first-response failure framing with one small next probe | skill (`runtime-triage`) | The narrow route usually preserves the smallest useful diagnostic move. |
 | failure framing where evidence is still messy after first-response triage | worker (`runtime-investigator`) | The worker earns its cost when stronger ambiguity management materially helps. |
 | mixed architecture + UX review | worker (`design-reviewer`) | The worker preserves both dimensions instead of under-serving one axis. |
@@ -128,6 +136,30 @@ It reflects the current repo evidence for when `godot-dotnet` should stay on a n
 The workers are intentionally read-only and bounded. They do not replace implementation agents. Their job is to improve decision quality before fixes, refactors, or upgrades begin.
 
 ## Skill coverage at a glance
+
+### `godot-csharp`
+
+Primary implementation concerns:
+
+1. `script role and lifecycle fit`
+2. `Godot C# API mapping and naming`
+3. `signals, events, and await usage`
+4. `exports, inspector behavior, and tool-mode caveats`
+5. `collections and Variant boundaries`
+6. `interop and struct-mutation pitfalls`
+7. `diagnostics, rebuild steps, and editor visibility`
+
+### `godot-tscn`
+
+Primary scene-file concerns:
+
+1. `file descriptor and section order`
+2. `external and internal resource integrity`
+3. `root node and parent-path correctness`
+4. `NodePath and property-path preservation`
+5. `connections and inherited-scene metadata`
+6. `save-time normalization and default-value omission`
+7. `editor load and runtime smoke validation`
 
 ### `runtime-triage`
 

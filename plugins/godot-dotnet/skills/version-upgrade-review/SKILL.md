@@ -42,11 +42,11 @@ Invoke this skill for requests such as:
 
 ### Trigger examples
 
-- "幫我規劃 Godot 4.x 升級次序"
-- "升 .NET SDK 前想知道風險同驗證點"
-- "這次 upgrade 會唔會炸 addon / export？"
-- "Godot + C# project 想升版，但不要一次升爆全部"
-- "先升 engine 定先升 SDK？"
+- "Help me plan the upgrade order for Godot 4.x"
+- "Before upgrading the .NET SDK, I want to understand the risks and validation points"
+- "Will this upgrade break addons or exports?"
+- "I want to upgrade this Godot + C# project without doing everything at once"
+- "Should I upgrade the engine or the SDK first?"
 
 ## Do not use this skill when
 

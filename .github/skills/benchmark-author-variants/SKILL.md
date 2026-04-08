@@ -32,10 +32,10 @@ Typical requests:
 
 ### Trigger examples
 
-- "幫我為 B006 起 metamorphic variants"
-- "做一個 adversarial variant pack"
-- "將呢個 benchmark 補 hard invariants 同 drift budget"
-- "針對 route drift 補 variant bundle"
+- "Help me create metamorphic variants for B006"
+- "Build an adversarial variant pack"
+- "Add hard invariants and a drift budget to this benchmark"
+- "Create a variant bundle focused on route drift"
 
 ## Do not use this skill when
 

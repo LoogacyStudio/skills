@@ -33,10 +33,10 @@ Typical requests:
 
 ### Trigger examples
 
-- "幫我 judge 呢個 benchmark run"
-- "將 execution record 轉成正式 scored record"
-- "做 route-first rubric review"
-- "補 failure tags 同 invariance notes"
+- "Help me judge this benchmark run"
+- "Turn this execution record into a scored record"
+- "Do a route-first rubric review"
+- "Add failure tags and invariance notes"
 
 ## Do not use this skill when
 

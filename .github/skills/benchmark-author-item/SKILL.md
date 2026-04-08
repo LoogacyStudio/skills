@@ -33,10 +33,10 @@ Typical requests:
 
 ### Trigger examples
 
-- "幫我起一個新 benchmark item"
-- "將呢個 eval case 寫成 benchmark 定義"
-- "補齊 route expectation 同 scoring focus"
-- "將 ad hoc prompt 升格成 seed benchmark"
+- "Help me draft a new benchmark item"
+- "Turn this eval case into a benchmark definition"
+- "Tighten the route expectation and scoring focus"
+- "Promote this ad hoc prompt into a seed benchmark"
 
 ## Do not use this skill when
 

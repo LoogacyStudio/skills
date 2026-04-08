@@ -34,11 +34,11 @@ Invoke this skill for tasks such as:
 
 ### Trigger examples
 
-- "這次 extend flow 後好似多咗好多 flags，抽象開始怪怪地"
-- "幫我睇下呢次 refactor 有冇 responsibility drift"
-- "呢個 compatibility layer 會唔會開始污染主 abstraction？"
-- "加完新 feature 後 boundary 有冇開始漏水？"
-- "想避免 abstraction decay，幫我 review 下目前改法"
+- "This flow extension added a lot of flags—does the abstraction look unhealthy now?"
+- "Help me check whether this refactor is causing responsibility drift"
+- "Is this compatibility layer starting to contaminate the main abstraction?"
+- "After adding this feature, are the boundaries starting to leak?"
+- "I want to avoid abstraction decay—can you review the current approach?"
 
 ## Do not use this skill when
 

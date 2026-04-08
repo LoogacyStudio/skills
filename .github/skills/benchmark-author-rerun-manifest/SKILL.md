@@ -34,10 +34,10 @@ Typical requests:
 
 ### Trigger examples
 
-- "幫我起一份 candidate rerun manifest"
-- "將呢個 C1/C2 draft 變成 rerun slice"
-- "列出 target suites 同 protected anchors 再準備 rerun"
-- "補一份 rerun manifest，唔好重跑成個 stress set"
+- "Help me draft a candidate rerun manifest"
+- "Turn this C1/C2 draft into a rerun slice"
+- "List the target suites and protected anchors before rerun"
+- "Add a rerun manifest without rerunning the full stress set"
 
 ## Do not use this skill when
 

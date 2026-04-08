@@ -34,11 +34,11 @@ Invoke this skill for requests such as:
 
 ### Trigger examples
 
-- "這個 HUD 太亂，玩家會唔會睇唔明？"
-- "menu flow 好似唔夠清楚，下一步唔 obvious"
-- "做完操作之後回饋夠唔夠？"
-- "這個 Godot 工具 UI 密度會唔會太高？"
-- "幫我 review 一下 interaction flow，同埋 critical action 易唔易搵"
+- "This HUD feels too noisy—will players struggle to read it?"
+- "The menu flow feels unclear—does the next step read as obvious?"
+- "Is the feedback strong enough after each action?"
+- "Is this Godot tool UI too dense?"
+- "Review this interaction flow and tell me whether the critical action is easy to find"
 
 ## Do not use this skill when
 

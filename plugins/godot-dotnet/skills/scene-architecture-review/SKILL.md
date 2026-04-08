@@ -34,10 +34,10 @@ Invoke this skill for requests such as:
 
 ### Trigger examples
 
-- "這個 scene structure 好亂"
-- "Autoload 用得多不多"
-- "這個 Godot UI 同 gameplay 綁太死嗎"
-- "應不應把某功能拆成獨立 scene"
+- "This scene structure feels messy"
+- "Am I overusing autoloads?"
+- "Is this Godot UI too tightly coupled to gameplay?"
+- "Should this feature be split into its own scene?"
 
 ## Do not use this skill when
 

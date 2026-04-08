@@ -33,11 +33,11 @@ Invoke this skill for tasks such as:
 
 ### Trigger examples
 
-- "這個 Godot refactor 改完了，幫我看能不能算完成"
-- "這個 feature 橫跨 scene、C#、docs，還有沒有漏同步？"
-- "幫我做 post-change review，看 layer boundary 同驗證證據夠唔夠"
-- "這個多檔案實作現在能 claim done 嗎？"
-- "看看這次改動有冇 engine usage / content sync / regression evidence 風險"
+- "This Godot refactor is done—can you check whether it's actually complete?"
+- "This feature spans scenes, C#, and docs—did I miss any sync work?"
+- "Give me a post-change review focused on layer boundaries and verification evidence"
+- "Can this multi-file implementation reasonably claim done?"
+- "Check this change for engine-usage, content-sync, and regression-evidence risks"
 
 ## Do not use this skill when
 

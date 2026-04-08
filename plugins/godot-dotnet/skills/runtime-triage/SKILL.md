@@ -34,11 +34,11 @@ Invoke this skill for problems such as:
 
 ### Trigger examples
 
-- "Godot 4.6 C# build fail"
-- "開 scene 時 crash"
-- "進遊戲即報 null reference"
-- "editor 開專案後大量錯誤"
-- "升版後突然 run 不到"
+- "Godot 4.6 C# build fails"
+- "The scene crashes when I open it"
+- "I get a null reference as soon as gameplay starts"
+- "The editor throws a flood of errors when the project opens"
+- "After the upgrade the project suddenly won't run"
 
 ## Do not use this skill when
 

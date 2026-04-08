@@ -34,10 +34,10 @@ Typical requests:
 
 ### Trigger examples
 
-- "幫我 review 呢個 candidate 可唔可以 promote"
-- "做一份 candidate gate review"
-- "睇下 protected suites 有無 regression"
-- "新 benchmark case 可唔可以 official adoption"
+- "Help me review whether this candidate should be promoted"
+- "Write a candidate gate review"
+- "Check whether the protected suites regressed"
+- "Assess whether this new benchmark case is ready for official adoption"
 
 ## Do not use this skill when
 

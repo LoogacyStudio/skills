@@ -37,11 +37,11 @@ Invoke this skill for tasks such as:
 
 ### Trigger examples
 
-- "這段 Godot feature 應該先測什麼？"
-- "哪些可以用 pure C# test，哪些一定要進 runtime？"
-- "升版後這幾個 scene 要怎樣做 smoke / regression？"
-- "這個 UI 流程改動值得補哪些測試？"
-- "幫我做一份最小 test matrix，不要全世界都測"
+- "What should I test first for this Godot feature?"
+- "Which parts can stay in pure C# tests and which must run in runtime?"
+- "How should I do smoke and regression checks for these scenes after the upgrade?"
+- "What tests are worth adding for this UI flow change?"
+- "Give me a minimal test matrix instead of testing everything"
 
 ## Do not use this skill when
 
@@ -51,7 +51,7 @@ Do not use this skill when:
 - the task is a framework-specific testing tutorial
 - the user only wants a tool recommendation list
 - there is no meaningful change surface to analyze
-- the output would just be "全部都測" with no prioritization
+- the output would just be "test everything" with no prioritization
 
 ## Pattern
 
