@@ -9,6 +9,7 @@ Rules:
 - say `Yes`, `No`, or `Partial` for runtime need
 - use regression priority to show what should be protected first if time is tight
 - keep narrative sections short, concrete, and tied to the matrix
+- if a proposed runtime test creates nodes that never enter the `SceneTree`, note teardown with `Free()` rather than assuming `QueueFree()` is enough
 
 ## Change summary
 

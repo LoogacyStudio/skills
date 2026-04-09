@@ -25,6 +25,12 @@ These cases usually give the cheapest, fastest, and most stable confidence.
 
 These are the places where pure tests can lie to you if they ignore real engine behavior.
 
+### Runtime test cleanup reminder
+
+If a test or fixture creates Godot `Node` instances that never enter the `SceneTree`, tear them down with `Free()`.
+
+Do not rely on `QueueFree()` alone for off-tree test nodes. Without scene-tree-driven deferred processing, cleanup timing may never happen when the test expects it.
+
 ### Mixed cases
 
 Many systems are mixed.
@@ -152,3 +158,4 @@ Ask these questions:
 - do not push all confidence onto manual playtesting when a small deterministic check would help
 - do not push all confidence onto pure logic tests when the real risk is engine wiring or lifecycle
 - do not ignore migration-sensitive startup and load paths
+- do not recommend `QueueFree()` as sufficient cleanup for test nodes that never enter the `SceneTree`; use `Free()` in teardown

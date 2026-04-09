@@ -68,6 +68,7 @@ These are the only plugin-scoped internal workers currently shipped in `plugins/
 | :---- | :------- | :---------- |
 | [`godot-csharp`](./skills/godot-csharp/) | A task involves writing, refactoring, or translating Godot C# code and the agent must stay idiomatic to Godot's C# API instead of drifting into generic .NET or GDScript habits. | A structured implementation brief covering engine context, recommended patterns, API mapping notes, pitfalls, and validation / rebuild steps. |
 | [`godot-tscn`](./skills/godot-tscn/) | A task involves reading, editing, generating, or reviewing `.tscn` scene files directly and the agent must preserve scene-file structure instead of treating it as generic text. | A structured scene-edit brief covering file structure, reference surfaces, safe edit steps, risks, and validation. |
+| [`godot-godottest`](./skills/godot-godottest/) | A Godot/.NET project uses GoDotTest and needs concrete suite scaffolding, scene wiring, debug setup, coverage guidance, or GodotTestDriver-based runtime testing patterns. | A framework-specific GoDotTest implementation guide with setup rules, runtime test scaffolds, validation checks, and companion assets for suites and drivers. |
 | [`runtime-triage`](./skills/runtime-triage/) | A Godot/.NET project is broken, noisy, crashing, or behaving incorrectly and the failure layer is still unclear. | A focused triage report with likely layers, ranked causes, missing evidence, and the smallest useful next probe. |
 | [`scene-architecture-review`](./skills/scene-architecture-review/) | A scene, UI flow, or gameplay system feels overloaded, tightly coupled, or hard to change safely. | A structured architecture review with findings, risk areas, and concrete refactor directions. |
 | [`abstraction-integrity-review`](./skills/abstraction-integrity-review/) | A feature extension, touched-code refactor, or in-flight implementation is starting to stretch an abstraction through flags, boundary leakage, compatibility drag, or responsibility drift. | A structured abstraction-health review with decay risks, containment options, and a clear integrity verdict. |
@@ -95,6 +96,7 @@ These are the only plugin-scoped internal workers currently shipped in `plugins/
 
 - **You need to implement or refactor Godot C# code without drifting into GDScript-first or generic .NET patterns** → [`godot-csharp`](./skills/godot-csharp/)
 - **You need to read, edit, or review a `.tscn` scene file without breaking structure or references** → [`godot-tscn`](./skills/godot-tscn/)
+- **You need to write, run, debug, or cover GoDotTest suites, especially with GodotTestDriver-backed integration/UI tests** → [`godot-godottest`](./skills/godot-godottest/)
 - **Something is failing and you need a focused first-response diagnosis** → [`runtime-triage`](./skills/runtime-triage/)
 - **A scene or system feels structurally messy** → [`scene-architecture-review`](./skills/scene-architecture-review/)
 - **A feature or refactor is stretching an abstraction through flags, branching, or compatibility drag** → [`abstraction-integrity-review`](./skills/abstraction-integrity-review/)

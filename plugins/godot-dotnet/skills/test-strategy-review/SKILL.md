@@ -48,6 +48,7 @@ Invoke this skill for tasks such as:
 Do not use this skill when:
 
 - the user already knows the exact tests to write and wants implementation only
+- the project already uses GoDotTest and the main need is framework-specific runtime test implementation, setup, debugging, or coverage guidance — use `godot-godottest`
 - the task is a framework-specific testing tutorial
 - the user only wants a tool recommendation list
 - there is no meaningful change surface to analyze
@@ -134,6 +135,7 @@ Rules:
 
 - push testable business or rule logic down into pure logic coverage when possible
 - keep runtime tests for engine behavior, wiring, and integration assumptions
+- when runtime tests create Godot `Node` instances that never enter the `SceneTree`, plan teardown with `Free()` instead of relying on `QueueFree()` alone
 - call out mixed areas explicitly so the strategy can split them instead of testing everything at the highest-cost layer
 
 ### 3. Assess risk, fragility, and player impact
@@ -174,6 +176,10 @@ Decision guidance:
 - use **UI / flow / interaction validation** when the change is experienced through menus, prompts, transitions, or player-driven sequences
 - use **smoke tests** to prove the critical path still boots, loads, and reaches the expected baseline state
 - use **regression checks** to protect the path most likely to break again, especially after upgrades, refactors, or bug fixes
+
+If runtime-dependent coverage is **must have now** and the project already uses **GoDotTest**, say so explicitly and point the implementation phase to `godot-godottest` for suite scaffolding, scene wiring, CLI/debug setup, or coverage execution details instead of inventing generic framework guidance.
+
+If the proposed runtime coverage creates helper or fixture nodes outside the tree, call out cleanup explicitly: nodes that never enter the `SceneTree` should be torn down with `Free()`, because `QueueFree()` alone depends on tree-driven deferred processing.
 
 ### 5. Produce the final strategy and minimal test matrix
 

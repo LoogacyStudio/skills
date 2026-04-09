@@ -50,6 +50,7 @@ Check:
 - signal connection/disconnection ownership and event flow clarity
 - node-path, exported-field, and inspector-driven configuration assumptions
 - resource loading, scene loading, and serialized data expectations
+- test-harness cleanup for nodes that never enter the `SceneTree`; these should use `Free()` instead of relying on deferred `QueueFree()` cleanup
 - tool scripts, autoloads, input routing, timing, async, or physics seams touched by the change
 
 Warning signs:
@@ -58,6 +59,7 @@ Warning signs:
 - exported fields or resources changed but no one checked downstream scenes
 - signals were rerouted but ownership is harder to follow than before
 - runtime correctness now depends on fragile timing or implicit scene presence
+- tests or fixtures leave off-tree nodes pending because cleanup assumes `QueueFree()` will run without scene-tree processing
 
 ## 4. Scene, resource, config, docs, and content sync
 

@@ -130,6 +130,7 @@ Common examples:
 - `Call`, `CallDeferred`, `Connect`, and similar string-based engine APIs may still expect snake_case names; prefer `PropertyName`, `MethodName`, and `SignalName` where possible
 - exported members, signal delegates, and generic usage must satisfy Godot diagnostics
 - tool/editor code that changes exported or inspector-visible state may need `NotifyPropertyListChanged()`
+- test-only nodes that never enter the `SceneTree` should be cleaned up with `Free()`; do not assume `QueueFree()` alone will run in off-tree teardown
 
 Do not overwhelm the result with unrelated warnings.
 
@@ -187,6 +188,7 @@ Output rules:
 - Prefer type-safe events and generic node accessors over stringly-typed calls when possible.
 - Prefer .NET collections for internal data and Godot collections only at engine boundaries.
 - Prefer clear lifecycle ownership over faux-`@onready` patterns.
+- Prefer explicit `Free()` cleanup for off-tree test nodes instead of deferred `QueueFree()` cleanup that depends on scene-tree processing.
 - Prefer official Godot diagnostics constraints over clever C# tricks that the binding layer rejects.
 - Prefer explicit validation steps when editor-visible behavior is part of the change.
 
@@ -215,6 +217,7 @@ A good result should satisfy all of the following:
 - assuming captured-lambda signal handlers always disconnect safely
 - mutating struct-returning properties without reassigning them
 - skipping rebuild after adding exports or custom signals
+- using `QueueFree()` as the only teardown for test nodes that never enter the `SceneTree`
 
 ## Completion rule
 

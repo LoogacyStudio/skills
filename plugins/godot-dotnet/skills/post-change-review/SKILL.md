@@ -148,6 +148,7 @@ Check for:
 - signal connection/disconnection health and event ownership clarity
 - resource loading, exported fields, node-path assumptions, or inspector-driven configuration drift
 - autoload, singleton, input, timing, physics, async, or tool-mode usage that now crosses layers awkwardly
+- test or harness cleanup that creates off-tree nodes but only calls `QueueFree()` even though those nodes never enter the `SceneTree`
 - implementation choices that are technically valid but likely to create fragile runtime behavior or editor confusion
 
 This is not a full bug triage. Focus on whether the change left risky engine-facing assumptions behind.

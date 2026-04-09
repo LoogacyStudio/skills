@@ -47,6 +47,7 @@ Distilled implementation guidance based on the official Godot stable C#/.NET doc
 - Repeated reads and writes to engine-backed properties can add interop cost; cache local copies in tight loops.
 - Implicit conversions from `string` to `NodePath` or `StringName` add marshalling overhead in hot paths.
 - Prefer typed node accessors and safe casts instead of weakly typed node access.
+- In tests or fixtures, if a `Node` never enters the `SceneTree`, clean it up with `Free()`; `QueueFree()` alone relies on deferred scene-tree processing and is not a sufficient off-tree teardown strategy.
 - Treat Godot diagnostics as real design constraints. Common failures include missing `partial`, unsupported export types, invalid custom signal delegates, and Variant-incompatible generics.
 
 ## Rebuild and visibility reminders

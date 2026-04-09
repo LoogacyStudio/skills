@@ -419,3 +419,4 @@ FodyWeavers.xsd
 
 # Copilot generated files
 memories/*
+.vscode/*
