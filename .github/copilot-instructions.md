@@ -9,6 +9,8 @@ plugins/
 ├── godot-dotnet/
 |   └── README.md   
 evals/
+├── README.md
+tests/
 └── README.md
 
 ## User clarification preference
@@ -32,6 +34,7 @@ If `vscode/askQuestions` is unavailable, use brief normal chat questions instead
 - After completing the task, reply with:
   - Which skills were exercised
   - Ideas for skill self-improvement (if any)
+  - Evaluation of the skill check process and how it could be improved (if any)
   - Suggestions for next steps or next phase (if any)
 
 ## Benchmark portability rule

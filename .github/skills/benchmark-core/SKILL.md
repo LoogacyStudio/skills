@@ -27,6 +27,7 @@ Use this skill when:
 - you are creating or refactoring benchmark agents or benchmark skills
 - you need to understand how a benchmark corpus should expose canonical docs
 - you need the shared benchmark lifecycle map before choosing a specialized skill
+- you need to decide whether a practical fixture or trial should enter evals as a new benchmark item versus supporting an existing item
 - you need run-record finalization rules
 - you are making benchmark tooling more portable across repos or plugins
 
@@ -47,6 +48,7 @@ Do not use this skill when the task is already clearly one of these:
 - `references/benchmark-corpus-discovery.md` — how agents and skills should find the active corpus
 - `references/benchmark-corpus-adapter-contract.md` — what a corpus adapter must expose
 - `references/benchmark-skill-lifecycle.md` — shared lifecycle and ownership boundaries
+- `references/practical-fixture-eval-routing-guide.md` — how to decide whether a practical fixture belongs in evals as a new item, an input package, or only supporting evidence
 - `references/run-record-finalization-checklist.md` — bounded checklist for scaffold-to-completed run promotion
 
 ## Shared assets
@@ -60,9 +62,22 @@ When this skill is used, prefer to return:
 - a routing recommendation to the correct benchmark capability or specialized skill
 - a portability recommendation for benchmark agents or skills
 - a corpus-adapter design or review note
+- a fixture-to-eval recommendation that explicitly says `new item`, `existing item input package`, or `existing item evidence`, with the deciding criteria named
 - a plugin README routing block that reuses the shared three-entry benchmark / eval template
 - a lifecycle or ownership clarification
 - a bounded finalization checklist application plan
+
+## Practical fixture to eval boundary rule
+
+When the source material is a practical fixture, trial log, or hand-built lab project, do not jump straight from "this feels useful" to "make a new benchmark item".
+
+Apply `references/practical-fixture-eval-routing-guide.md` and make the outcome explicit:
+
+- **new benchmark item** when the fixture introduces a materially distinct task family, route expectation, artifact contract, or scoring focus
+- **existing item input package** when the benchmark contract is already represented, but the fixture gives a cleaner or more realistic black-box package for that same item shape
+- **existing item evidence only** when the fixture mainly strengthens realism, examples, or promotion confidence for an already-modeled benchmark
+
+If the decision is borderline, prefer keeping the fixture as evidence or input-package material until repeated runs prove it deserves its own item.
 
 ## Core rule
 

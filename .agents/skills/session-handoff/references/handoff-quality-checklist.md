@@ -56,6 +56,19 @@ Optional severity for findings:
 - unresolved failures are omitted
 - assumptions are written as facts
 
+### Reset-aware checks
+
+- [ ] If the workspace was reset, reverted, or cleaned, the handoff says so explicitly
+- [ ] Current workspace state is separated from historical trial or run evidence
+- [ ] Temporary probe files that were added and later removed are described accurately
+- [ ] The next agent can tell whether to resume from the current reset state or to recreate a prior state intentionally
+
+### Reset-aware failures
+
+- historical success notes are written as if the files still reflect that success path
+- a reverted workspace is described as though the temporary fix still exists
+- the next agent cannot tell whether a file should currently exist or is only mentioned in past evidence
+
 ---
 
 ## 3. Evidence discipline
@@ -123,6 +136,23 @@ Optional severity for findings:
 - no file or symbol index
 - no recommended order of attack
 - continuation still depends on hidden context from the old session
+
+---
+
+## 7. Reset / rollback continuity
+
+### Check
+
+- [ ] The handoff names any reset, rollback, cleanup, or state reactivation that happened after earlier work
+- [ ] It is clear which artifact records the pre-reset state
+- [ ] It is clear which files reflect the current runnable state
+- [ ] The next agent knows whether to preserve, recreate, or remove any temporary probe state before continuing
+
+### Common failures
+
+- the handoff preserves the history but loses the current runnable truth
+- reset actions are implied but never stated
+- the next agent would accidentally re-open a closed issue because the state boundary is unclear
 
 ---
 

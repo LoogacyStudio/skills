@@ -69,6 +69,7 @@ Extract or infer these inputs from the current work. Ask targeted follow-up ques
 | Completed work | Yes | Changes made, findings gathered, and decisions already taken |
 | Critical files and symbols | Yes | Files, components, commands, tests, or artifacts the next agent must inspect first |
 | Evidence trail | Yes | Verification results, command outputs, errors, screenshots, links, or citations that support the state described |
+| Current workspace state vs historical state | Recommended | Especially important when the workspace was reset, reverted, cleaned up, or partially rolled back after earlier work |
 | Open questions or blockers | Recommended | Risks, uncertainties, missing approvals, or unresolved failures |
 | Constraints and preferences | Recommended | User instructions, repo rules, tool limits, style constraints, or environment facts that still matter |
 | Recommended next step | Recommended | The exact first action the next agent should take |
@@ -144,6 +145,13 @@ Before drafting, classify information into three buckets:
 
 Do not blur these categories.
 A handoff that sounds confident but hides uncertainty is worse than a handoff that explicitly says what is still unknown.
+
+If the workspace was reset, reverted, or cleaned after earlier work, split state one more way:
+
+- **Current workspace facts** - what is true in the files right now
+- **Historical evidence** - what earlier runs, screenshots, logs, or trial artifacts proved before the reset
+
+Do not let a historical success path masquerade as the current workspace state, and do not let a reset hide earlier evidence that still matters.
 
 ### Step 4: Draft the handoff package
 
@@ -264,6 +272,7 @@ It should reference the handoff artifact, the resume objective, and the first ac
 Output requirements:
 
 - clearly label verified facts, assumptions, and unknowns where relevant
+- explicitly distinguish current workspace state from historical evidence when they differ
 - prefer concrete references to files, symbols, commands, outputs, and artifacts
 - keep the handoff continuation-oriented rather than retrospective only
 - avoid claims that are not supported by the current session evidence
@@ -280,6 +289,7 @@ A good result should satisfy all of the following:
 - [ ] Evidence is included for meaningful claims about implementation or verification
 - [ ] Decisions and constraints are preserved, not implied
 - [ ] Verified facts, assumptions, and unknowns are not mixed together carelessly
+- [ ] Current workspace state and historical evidence are separated when the workspace changed after earlier work
 - [ ] The first next step is actionable and specific
 - [ ] The handoff is concise enough to scan, but complete enough to resume work safely
 
@@ -292,6 +302,7 @@ A good result should satisfy all of the following:
 | Writing a retrospective summary with no resume path | Write a forward-looking continuation package with exact next actions |
 | Saying "continue from here" without naming files or symbols | Name the files, symbols, artifacts, and evidence the next agent should inspect first |
 | Presenting guesses as settled facts | Label assumptions and unknowns explicitly |
+| Describing yesterday's solved state as if the workspace still looks that way | Split current workspace state from historical evidence and cite both separately |
 | Omitting failed tests, blockers, or warnings | Preserve negative evidence so the next agent does not repeat dead ends |
 | Dumping the entire transcript into the handoff | Distill only the continuation-critical context and keep raw details as citations or references |
 | Creating a giant handoff for a tiny task | Match the handoff size to the real continuation risk |
