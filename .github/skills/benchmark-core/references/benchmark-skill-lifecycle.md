@@ -4,6 +4,10 @@ Use this shared map to keep the benchmark skills composable instead of letting a
 
 ## Primary lifecycle
 
+0. **Author a scoreable eval pack when the target is a reusable skill**
+   - skill: `benchmark-author-skill-evals`
+   - output: skill-eval pack with success criteria, prompt set, deterministic checks, qualitative rubric pass, and extension hooks
+
 1. **Author the benchmark definition**
    - skill: `benchmark-author-item`
    - output: canonical benchmark item draft
@@ -31,6 +35,7 @@ Use this shared map to keep the benchmark skills composable instead of letting a
 
 ## Ownership boundaries
 
+- `benchmark-author-skill-evals` turns a reusable skill into a measurable eval loop; it does not execute the eval suite or judge benchmark evidence.
 - `benchmark-author-item` defines benchmark contracts; it does not score outputs.
 - `benchmark-author-rerun-manifest` scopes rerun work; it does not execute or finalize records.
 - `benchmark-author-variants` authors transformed inputs; it does not decide whether observed drift is acceptable.
@@ -40,6 +45,7 @@ Use this shared map to keep the benchmark skills composable instead of letting a
 
 ## Practical routing rules
 
+- If the task starts with **"turn this skill into a measurable eval loop"** -> `benchmark-author-skill-evals`
 - If the task starts with **"make the benchmark item"** -> `benchmark-author-item`
 - If the task starts with **"define the rerun slice"** -> `benchmark-author-rerun-manifest`
 - If the task starts with **"author variants"** -> `benchmark-author-variants`

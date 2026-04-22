@@ -18,6 +18,7 @@ If a skill is renamed, moved, split, or replaced, update this registry rather th
 
 | Capability ID | What it means | Current skill |
 | --- | --- | --- |
+| `benchmark.skill-eval-authoring` | Turn a reusable agent skill into a scoreable eval pack with success criteria, trigger prompts, deterministic checks, rubric-based qualitative grading, and extension hooks. | [`../benchmark-author-skill-evals/`](../benchmark-author-skill-evals/) |
 | `benchmark.item-authoring` | Turn a benchmark idea or seed draft into a reusable benchmark item. | [`../benchmark-author-item/`](../benchmark-author-item/) |
 | `benchmark.rerun-planning` | Turn bounded candidate evidence into a rerun slice with target/protected anchors and follow-up rules. | [`../benchmark-author-rerun-manifest/`](../benchmark-author-rerun-manifest/) |
 | `benchmark.run-judging` | Turn execution output into a judged run record and finalize scaffold-backed records when complete. | [`../benchmark-judge-run/`](../benchmark-judge-run/) |

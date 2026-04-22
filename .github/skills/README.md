@@ -17,6 +17,7 @@ If you want the current repo's corpus context first, start from the repo-local c
 | Skill | Use when | Main output |
 | :---- | :------- | :---------- |
 | [`benchmark-core`](./benchmark-core/) | The benchmark framework itself needs guidance: capability registry, corpus discovery, corpus adapter rules, lifecycle boundaries, or run-record finalization conventions. | Framework / routing / portability guidance |
+| [`benchmark-author-skill-evals`](./benchmark-author-skill-evals/) | A reusable agent skill needs a small, scoreable eval pack with success criteria, trigger prompts, deterministic checks, rubric-based qualitative grading, and extension hooks. | Skill eval pack |
 | [`benchmark-author-item`](./benchmark-author-item/) | A new benchmark item, seed draft, or ad hoc eval case needs to be normalized into the canonical benchmark-item format. | Benchmark item draft |
 | [`benchmark-author-rerun-manifest`](./benchmark-author-rerun-manifest/) | A bounded candidate revision needs a concrete rerun manifest with target/protected suites, anchors, execution paths, and conditional follow-up checks before promotion review. | Candidate rerun manifest |
 | [`benchmark-judge-run`](./benchmark-judge-run/) | An execution result or variant run needs a route-first judged record, and any completed scaffold-backed slot needs to be finalized into canonical record naming. | Judged run record |

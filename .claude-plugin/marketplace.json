@@ -1,5 +1,5 @@
 {
-    "name": "godot-dotnet",
+    "name": "loogacy-skills",
     "owner": {
         "name": "Loogacy Studio"
     },
@@ -8,6 +8,11 @@
             "name": "godot-dotnet",
             "source": "./plugins/godot-dotnet",
             "description": "Agent skills for Godot 4.6, .NET 10, and C# coding-agent workflows."
+        },
+        {
+            "name": "game-development",
+            "source": "./plugins/game-development",
+            "description": "Reusable agent skills for cross-engine game-development design, review, and refactor workflows."
         }
     ]
 }
