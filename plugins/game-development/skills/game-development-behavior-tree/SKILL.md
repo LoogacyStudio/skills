@@ -56,6 +56,15 @@ Do not use this skill when:
 - Primary pattern: **Tool Wrapper**
 - Secondary pattern: **Generator**
 
+## Related skills and routing notes
+
+- Start with `game-development-behavior-architecture` if the system is only suspected to be tree-shaped and the architecture choice is not settled yet.
+- Pair with `game-development-world-state-facts` when blackboard truth, observed-vs-derived facts, or freshness rules are central.
+- Pair with `game-development-condition-rule-engine` when decorators, guards, or branch eligibility checks need shared rule semantics.
+- Pair with `game-development-time-source-and-tick-policy` when services, reevaluation cadence, or running-task polling cadence are part of the design risk.
+- Pair with `game-development-state-change-notification` when observer aborts, invalidation, or change-driven reevaluation matter more than constant polling.
+- Hand off to `game-development-entity-reference-boundary` when tasks or blackboards must carry target identities safely across running behavior.
+
 ## Diagnostic checklist
 
 Evaluate these questions before recommending or refining a behavior tree:

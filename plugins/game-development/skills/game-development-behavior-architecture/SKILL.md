@@ -55,6 +55,15 @@ Do not use this skill when:
 - Primary pattern: **Tool Wrapper**
 - Secondary pattern: **Generator**
 
+## Related skills and routing notes
+
+- Start here when the architecture choice is still open; do not jump straight into `game-development-fsm`, `game-development-behavior-tree`, `game-development-utility-ai`, or `game-development-goap` until the control-shape question is settled.
+- Pair with `game-development-condition-rule-engine` when the architecture debate is really about reusable guards, predicates, or transition criteria.
+- Pair with `game-development-world-state-facts` when the selected architecture will depend on shared observations, blackboard truth, or planner-readable facts.
+- Pair with `game-development-time-source-and-tick-policy` when reevaluation cadence, cooldown clocks, or polling-vs-event timing materially change the architecture fit.
+- Pair with `game-development-resource-transaction-system` when action affordability, reservation, or commit timing strongly shapes the chosen behavior model.
+- Hand off to the chosen implementation skill once the route is clear: `game-development-fsm`, `game-development-behavior-tree`, `game-development-utility-ai`, or `game-development-goap`.
+
 ## Diagnostic checklist
 
 Evaluate these questions before recommending any architecture:

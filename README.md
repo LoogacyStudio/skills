@@ -84,7 +84,7 @@ The plugin layer is the market facing part of this repository.
 | Plugin | Focus | Current shape | Start here |
 | :----- | :---- | :------------ | :--------- |
 | [`godot-dotnet`](plugins/godot-dotnet/README.md) | Godot 4.6, .NET 10, C#, `.tscn`, review, validation, and upgrade planning | 10 reusable skills, 3 internal workers | [`plugins/godot-dotnet/README.md`](plugins/godot-dotnet/README.md) |
-| [`game-development`](plugins/game-development/README.md) | Portable game development patterns across engines, starting with object reuse and pooling decisions | 1 reusable skill, no internal workers yet | [`plugins/game-development/README.md`](plugins/game-development/README.md) |
+| [`game-development`](plugins/game-development/README.md) | Portable game development patterns across engines, with the current `3 + 2 + 2` shared-semantics rollout plus higher-level behavior and flow skills | 16 reusable skills, no internal workers yet | [`plugins/game-development/README.md`](plugins/game-development/README.md) |
 
 ### Quick picks from `godot-dotnet`
 
@@ -97,6 +97,14 @@ The plugin layer is the market facing part of this repository.
 
 ### Quick picks from `game-development`
 
+- Reusable condition semantics and rule ownership → [`game-development-condition-rule-engine`](plugins/game-development/skills/game-development-condition-rule-engine/)
+- Shared cost, reservation, refund, and commit rules → [`game-development-resource-transaction-system`](plugins/game-development/skills/game-development-resource-transaction-system/)
+- Cooldowns, timers, and reevaluation cadence → [`game-development-time-source-and-tick-policy`](plugins/game-development/skills/game-development-time-source-and-tick-policy/)
+- Blackboard facts, freshness, and planner-readable truth → [`game-development-world-state-facts`](plugins/game-development/skills/game-development-world-state-facts/)
+- Identity handles, stale references, and lifetime boundaries → [`game-development-entity-reference-boundary`](plugins/game-development/skills/game-development-entity-reference-boundary/)
+- Tag taxonomy, filtering, and declarative queries → [`game-development-gameplay-tags-and-query`](plugins/game-development/skills/game-development-gameplay-tags-and-query/)
+- Diff vs snapshot payloads, invalidation, and notification batching → [`game-development-state-change-notification`](plugins/game-development/skills/game-development-state-change-notification/)
+- First route choice across FSM / behavior tree / Utility AI / GOAP → [`game-development-behavior-architecture`](plugins/game-development/skills/game-development-behavior-architecture/)
 - Spawn and despawn churn, pooling, or GC spike work → [`game-development-object-pool`](plugins/game-development/skills/game-development-object-pool/)
 
 ## Where to start by task
@@ -112,7 +120,7 @@ If you already know what kind of work you are doing, use this map.
 | Work on benchmark framework rules or routing | [`.github/skills/benchmark-core/`](.github/skills/benchmark-core/) |
 | Work on the canonical eval corpus | [`evals/godot-dotnet/README.md`](evals/godot-dotnet/README.md) |
 | Use Godot and .NET implementation or review skills | [`plugins/godot-dotnet/README.md`](plugins/godot-dotnet/README.md) |
-| Use cross engine gameplay optimization patterns | [`plugins/game-development/README.md`](plugins/game-development/README.md) |
+| Use cross engine gameplay and architecture patterns | [`plugins/game-development/README.md`](plugins/game-development/README.md) |
 | Run practical fixture trials in tracked projects | [`tests/README.md`](tests/README.md) |
 
 ## Repository layout

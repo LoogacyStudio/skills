@@ -57,6 +57,15 @@ Do not use this skill when:
 - Primary pattern: **Tool Wrapper**
 - Secondary pattern: **Generator**
 
+## Related skills and routing notes
+
+- Start here only after there is measured churn; if the real issue is scene or subsystem ownership of reused objects, pair early with `game-development-coordinator`.
+- Pair with `game-development-entity-reference-boundary` when pooled reuse makes direct references, IDs, handles, or delayed callbacks unsafe across object lifetimes.
+- Pair with `game-development-state-change-notification` when acquisition and release should invalidate caches, refresh observers, or suppress stale UI/gameplay listeners.
+- Pair with `game-development-time-source-and-tick-policy` when pooled objects carry timers, cooldown windows, delayed release, or cadence-sensitive reset logic.
+- Hand off to `game-development-command-flow` when pooled objects are only one piece of a larger queued action or spawn-dispatch surface.
+- Hand off to engine-specific lifecycle references once the pool boundary is justified and the remaining risk is runtime lifecycle correctness rather than pooling fit.
+
 ## Diagnostic checklist
 
 | Question | Good sign for pooling | Warning sign |

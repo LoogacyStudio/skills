@@ -56,6 +56,15 @@ Do not use this skill when:
 - Primary pattern: **Tool Wrapper**
 - Secondary pattern: **Generator**
 
+## Related skills and routing notes
+
+- Start with `game-development-coordinator` if the main problem is one bounded scene or subsystem seam rather than publisher/subscriber topology itself.
+- Start with `game-development-command-flow` if the message really means "please do this action" rather than "this happened."
+- Pair with `game-development-state-change-notification` when the hard part is payload meaning, diff-vs-snapshot semantics, invalidation, or batching rather than wiring alone.
+- Pair with `game-development-entity-reference-boundary` when event payloads risk carrying stale references, unsafe handles, or dead object pointers.
+- Pair with `game-development-time-source-and-tick-policy` when delivery should shift by phase, cadence, deferred update window, or explicit throttling policy.
+- Hand off to `game-development-condition-rule-engine` or `game-development-world-state-facts` when listeners are really reacting to shared rules or fact freshness rather than communication topology.
+
 ## Diagnostic checklist
 
 Evaluate these questions before recommending or refining an events-and-signals design:

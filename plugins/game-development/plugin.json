@@ -1,6 +1,6 @@
 {
     "name": "game-development",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Reusable agent skills for cross-engine game-development design, review, and refactor workflows.",
     "skills": "./skills/",
     "agents": "./agents/"

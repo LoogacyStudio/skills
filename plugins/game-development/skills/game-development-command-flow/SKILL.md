@@ -56,6 +56,15 @@ Do not use this skill when:
 - Primary pattern: **Tool Wrapper**
 - Secondary pattern: **Generator**
 
+## Related skills and routing notes
+
+- Start with `game-development-events-and-signals` if the message is mainly a notification topology problem rather than an action-request contract.
+- Pair with `game-development-resource-transaction-system` when command validation, reservation, commit, refund, or rollback semantics are central.
+- Pair with `game-development-condition-rule-engine` when commands depend on reusable eligibility checks rather than one-off inline validation.
+- Pair with `game-development-entity-reference-boundary` when delayed, queued, undoable, or replayable commands must avoid unstable direct references.
+- Pair with `game-development-time-source-and-tick-policy` when execution timing, queue windows, buffering, or retry cadence materially affect the action model.
+- Hand off to `game-development-coordinator` when the real problem becomes bounded subsystem ownership around the command surface rather than the commands themselves.
+
 ## Diagnostic checklist
 
 Evaluate these questions before recommending or refining a command-flow design:

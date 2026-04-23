@@ -319,7 +319,7 @@ Practical rule of thumb:
 Current plugin manifest:
 
 - `name`: `godot-dotnet`
-- `version`: `0.1.0`
+- `version`: `0.1.2`
 - `description`: `Agent skills for Godot 4.6, .NET 10, and C# coding-agent workflows.`
 
 See [`plugin.json`](./plugin.json) for the source of truth.

@@ -58,6 +58,15 @@ Do not use this skill when:
 - Primary pattern: **Tool Wrapper**
 - Secondary pattern: **Generator**
 
+## Related skills and routing notes
+
+- Start with `game-development-behavior-architecture` if the team has not yet proved that an FSM is the right control shape.
+- Pair with `game-development-condition-rule-engine` when guards, transition checks, or reusable state-entry rules are starting to sprawl.
+- Pair with `game-development-time-source-and-tick-policy` when state updates, cooldown exits, or reevaluation cadence depend on explicit clock rules.
+- Pair with `game-development-state-change-notification` when transitions should be state-change-driven, emit meaningful payloads, or invalidate downstream consumers.
+- Pair with `game-development-world-state-facts` when state transitions depend on shared observed truth rather than local-only fields.
+- Hand off to `game-development-coordinator` or `game-development-command-flow` when the real pain is subsystem collaboration or action dispatch around the state machine rather than the machine itself.
+
 ## Diagnostic checklist
 
 Evaluate these questions before recommending an FSM shape:

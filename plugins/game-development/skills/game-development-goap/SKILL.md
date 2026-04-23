@@ -56,6 +56,15 @@ Do not use this skill when:
 - Primary pattern: **Tool Wrapper**
 - Secondary pattern: **Generator**
 
+## Related skills and routing notes
+
+- Start with `game-development-behavior-architecture` if GOAP is only one candidate and the planning-vs-reactive question is still open.
+- Pair with `game-development-world-state-facts` when planner memory, sensed truth, derived facts, or freshness policy need a real foundation instead of ad-hoc blackboard drift.
+- Pair with `game-development-condition-rule-engine` when action preconditions need reusable predicate structure instead of planner-local custom checks everywhere.
+- Pair with `game-development-resource-transaction-system` when action costs, reservations, or commit semantics materially affect action viability and planning.
+- Pair with `game-development-time-source-and-tick-policy` or `game-development-state-change-notification` when replanning cadence depends on explicit clocks, invalidation, or state-change triggers.
+- Hand off to `game-development-command-flow` when planned actions need a stable execution, queuing, or replay surface outside the planner itself.
+
 ## Diagnostic checklist
 
 Evaluate these questions before recommending or refining a GOAP system:

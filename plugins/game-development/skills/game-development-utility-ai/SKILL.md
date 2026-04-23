@@ -56,6 +56,15 @@ Do not use this skill when:
 - Primary pattern: **Tool Wrapper**
 - Secondary pattern: **Generator**
 
+## Related skills and routing notes
+
+- Start with `game-development-behavior-architecture` if the team has not yet proved that scoring is the right control shape.
+- Pair with `game-development-condition-rule-engine` when candidate availability, gating rules, or reusable considerations are drifting into repeated custom checks.
+- Pair with `game-development-world-state-facts` when scorers depend on shared observations, inferred truth, or stale-vs-current world knowledge.
+- Pair with `game-development-time-source-and-tick-policy` when rescoring cadence, hysteresis windows, cooldowns, or interrupt timing are the real source of instability.
+- Pair with `game-development-gameplay-tags-and-query` when candidate filtering or score inputs depend on governed shared vocabularies instead of branchy label checks.
+- Hand off to `game-development-state-change-notification` when rescoring should be driven by meaningful invalidation or change events rather than ambient polling.
+
 ## Diagnostic checklist
 
 Evaluate these questions before recommending or refining a Utility AI system:

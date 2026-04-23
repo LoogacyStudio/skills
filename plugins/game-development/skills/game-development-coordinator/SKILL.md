@@ -59,6 +59,15 @@ Do not use this skill when:
 - Primary pattern: **Tool Wrapper**
 - Secondary pattern: **Generator**
 
+## Related skills and routing notes
+
+- Start with `game-development-events-and-signals` if the actual pain is notification topology rather than one bounded gateway owning collaboration.
+- Start with `game-development-command-flow` if the real question is request execution, queuing, or history rather than coordination surface design.
+- Pair with `game-development-entity-reference-boundary` when the coordinator exists partly to shield callers from volatile child references, handles, or lookup rules.
+- Pair with `game-development-state-change-notification` when the coordinator must expose meaningful invalidation, bubbled state changes, or change aggregation at the boundary.
+- Pair with `game-development-world-state-facts` when the coordinator owns or brokers shared observed truth instead of just forwarding calls.
+- Hand off to `game-development-behavior-architecture` when the coordinator is being asked to own AI or decision structure that should live in a behavior model instead.
+
 ## Diagnostic checklist
 
 Evaluate these questions before recommending or refining a coordinator design:
