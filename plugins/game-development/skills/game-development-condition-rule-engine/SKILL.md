@@ -1,6 +1,6 @@
 ---
 name: game-development-condition-rule-engine
-description: Use when gameplay, AI, interaction, or action systems are accumulating ad-hoc preconditions, guard clauses, transition checks, or composite eligibility rules, and the agent must define or review a reusable condition model with explicit rule ownership, inputs, evaluation timing, composition, observability, and failure semantics.
+description: "Use when a cross-engine gameplay task needs a Layer 1 foundation for reusable condition semantics — preconditions, guard clauses, transition checks, or composite eligibility rules — and the agent must define or review a reusable condition model with explicit rule ownership, inputs, evaluation timing, composition, observability, and failure semantics."
 ---
 
 # Game Development Condition Rule Engine

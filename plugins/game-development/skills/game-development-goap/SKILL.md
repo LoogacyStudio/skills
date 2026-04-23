@@ -1,6 +1,6 @@
 ---
 name: game-development-goap
-description: Use when a gameplay or AI problem is fundamentally goal-driven and needs multi-step action planning with explicit world facts, action preconditions and effects, costs, and replanning rules, and the agent must design or review a GOAP system without letting facts, actions, or replanning drift into chaos.
+description: "Use when a cross-engine gameplay task needs a Layer 2 shared-runtime GOAP design for goal-driven multi-step action planning, explicit world facts, action preconditions and effects, costs, and replanning rules, and the agent must design or review a GOAP system without letting facts, actions, or replanning drift into chaos."
 ---
 
 # Game Development GOAP
@@ -12,6 +12,7 @@ This skill is for designing, reviewing, or refactoring GOAP-style systems withou
 If the engine is unspecified, keep the recommendation engine-agnostic first. Only use engine-native guidance when the task explicitly depends on runtime features such as Unity or Godot adapters, engine-managed sensors, or equivalent framework constraints.
 
 For reusable heuristics covering goals, facts, actions, replanning, and execution boundaries, see `references/goap-design-guide.md`.
+For review-oriented criteria, planner checks, and cross-foundation handoff prompts, see `references/goap-review-checklist.md`.
 
 ## Purpose
 
@@ -191,14 +192,17 @@ If the best answer is **not** GOAP, still use the template and say that explicit
 
 Return the result in these sections:
 
-1. **Planning boundary**
-2. **World-state model**
-3. **Goal model**
-4. **Action library design**
-5. **Planning and replanning model**
-6. **Execution-system boundaries**
-7. **Implementation plan**
-8. **Verification notes**
+1. **Task summary**
+2. **Planning boundary**
+3. **World-state model**
+4. **Goal model**
+5. **Action library design**
+6. **Planning and replanning model**
+7. **Execution-system boundaries**
+8. **Related foundations and handoff notes**
+9. **Implementation plan**
+10. **Verification notes**
+11. **Assumptions and unknowns**
 
 Keep the section order stable so GOAP recommendations are easy to compare across reviews and refactor passes.
 
@@ -234,6 +238,7 @@ Keep the section order stable so GOAP recommendations are easy to compare across
 ## Companion files
 
 - `references/goap-design-guide.md` — reusable heuristics for facts, goals, actions, replanning, execution boundaries, and engine-aware design notes
+- `references/goap-review-checklist.md` — reusable review criteria, planner checks, and cross-foundation handoff prompts for GOAP designs
 - `assets/goap-planning-brief.md` — reusable output template for returning the GOAP design or review artifact
 
 ## Validation

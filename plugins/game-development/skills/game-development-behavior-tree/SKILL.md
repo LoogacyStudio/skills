@@ -1,6 +1,6 @@
 ---
 name: game-development-behavior-tree
-description: Use when a gameplay or AI behavior problem is already tree-shaped or strongly trending toward hierarchical priorities, fallback branches, running tasks, and interruptible decisions, and the agent must design or review a behavior tree without letting the tree or blackboard become a junk drawer.
+description: "Use when a cross-engine gameplay task needs a Layer 2 shared-runtime behavior-tree design for hierarchical priorities, fallback branches, running tasks, or interruptible decisions, and the agent must design or review a behavior tree without letting the tree or blackboard become a junk drawer."
 ---
 
 # Game Development Behavior Tree

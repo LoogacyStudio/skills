@@ -6,31 +6,23 @@ README.md
 .github/
 ├── copilot-instructions.md
 plugins/
+├── game-development/
+|   └── README.md
 ├── godot-dotnet/
-|   └── README.md   
+|   └── README.md
 evals/
 ├── README.md
 tests/
 └── README.md
 
-## User clarification preference
-
-When clarification is genuinely needed in VS Code, **prefer `vscode/askQuestions` first**.
-
-- batch related questions
-- ask only the highest-signal questions
-- prefer concrete choices over open-ended brainstorming
-- stop asking once the core decision is clear enough to proceed safely
-
-If `vscode/askQuestions` is unavailable, use brief normal chat questions instead.
-
 ## Skill checks and execution process (The Rule)
 
+- Confirm a repo-specific skill has been created
+  - it is up to date, and it has a checklist if applicable.
+  - **Self improvement** is the point of the skill review process, so if there is no skill for the task, create one before proceeding.
 - Always perform the skill check first, then respond or execute.
 - If there is even a 1% chance of applicability, load the corresponding `SKILL.md` first.
-- When multiple skills run in parallel, process first, then implementation/domain.
 - If a skill has a checklist, convert it to a todo and complete each item.
-- If a patch context mismatch happens while editing customization files, reload the current files and switch to smaller single-file patches.
 - After completing the task, reply with:
   - Which skills were exercised
   - Ideas for skill self-improvement (if any)
@@ -47,3 +39,25 @@ For reusable benchmark agents and benchmark skills, treat [`benchmark-core`](./s
 - keep templates, examples, and working skeletons in the skill layer
 
 If the current repo has one concrete corpus implementation, document it in repo-local corpus adapters rather than baking repo-specific paths into reusable benchmark components.
+
+## Layered skills repo contract
+
+Source of truth:
+
+- [`../layered-skills-vscode-model.md`](../layered-skills-vscode-model.md)
+
+Repository default mapping:
+
+- **Layer 0** → repo-level instructions and hooks
+- **Layer 1** → foundation skills
+- **Layer 2** → shared-runtime skills
+- **Layer 3** → custom agents and real orchestration
+- **Layer 4** → plugin-scoped overlay skills and agents
+
+Working rules:
+
+- treat plugins as packaging and discovery surfaces, not execution graphs
+- treat `depends_on` as documentation unless backed by an explicit orchestration path
+- promote true delegation, context isolation, and multi-role synthesis to custom agents
+- do not let Layer 2 redefine Layer 1 semantics
+- do not let Layer 4 overlays silently rewrite lower-layer meanings

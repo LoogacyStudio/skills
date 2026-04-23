@@ -1,6 +1,6 @@
 ---
 name: game-development-gameplay-tags-and-query
-description: Use when gameplay, AI, content, or coordination systems are accumulating ad-hoc labels, enum explosions, inconsistent tag meanings, or brittle filtering logic, and the agent must define or review a reusable gameplay-tag and query model with explicit taxonomy rules, ownership, mutation policy, query semantics, and over-tagging safeguards.
+description: "Use when a cross-engine gameplay task needs a Layer 1 foundation for tag taxonomies, query semantics, label sprawl, or enum explosion pressure, and the agent must define or review a reusable gameplay-tag and query model with explicit taxonomy rules, ownership, mutation policy, query semantics, and over-tagging safeguards."
 ---
 
 # Game Development Gameplay Tags and Query

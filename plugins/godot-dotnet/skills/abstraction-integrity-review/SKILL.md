@@ -1,6 +1,6 @@
 ---
 name: abstraction-integrity-review
-description: Use when implementing a feature, extending an existing flow, or refactoring touched code in a Godot project and you need to prevent abstractions from decaying through flag creep, boundary leakage, compatibility creep, or responsibility drift.
+description: "Use when a Godot/.NET task needs a Layer 4 overlay review to prevent abstraction decay during feature work, flow extension, or touched-code refactoring, especially around flag creep, boundary leakage, compatibility creep, or responsibility drift."
 ---
 
 # Abstraction Integrity Review

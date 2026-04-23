@@ -1,6 +1,6 @@
 ---
 name: game-development-coordinator
-description: Use when gameplay, UI, quest, encounter, cutscene, or scene/subsystem flow is accumulating brittle reference chains, root-node god scripts, scattered cross-system callbacks, or unclear scene-boundary ownership, and the agent must design or review a bounded coordinator layer with an explicit public surface, internal ownership map, forwarding rules, collaboration boundaries, and god-object safeguards.
+description: "Use when a cross-engine gameplay task needs a Layer 2 shared-runtime coordination boundary for brittle reference chains, root-node god scripts, scattered cross-system callbacks, or unclear scene ownership, and the agent must design or review a bounded coordinator layer with an explicit public surface, internal ownership map, forwarding rules, collaboration boundaries, and god-object safeguards."
 ---
 
 # Game Development Coordinator

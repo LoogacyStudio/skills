@@ -1,7 +1,7 @@
 {
     "name": "godot-dotnet",
     "version": "0.1.2",
-    "description": "Agent skills for Godot 4.6, .NET 10, and C# coding-agent workflows.",
+    "description": "Layer 4 Godot/.NET overlay skills and bounded internal workers for Godot 4.6, .NET 10, and C# coding-agent workflows.",
     "skills": "./skills/",
     "agents": "./agents/"
 }

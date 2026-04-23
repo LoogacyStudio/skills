@@ -211,6 +211,55 @@ Reject or down-rank a candidate when:
 - it duplicates engine-native tools without reducing complexity
 - it expands the mutation surface before the current boundary is even clear
 
+## Boundary stress tests
+
+Use these tests when the architecture debate feels real, but the actual problem may still live in a lower shared-semantics layer.
+
+### Test 1. Is this really an architecture problem, or a condition/fact problem?
+
+Ask:
+
+- are people arguing about whether the agent "knows" something, or only whether a branch should be legal right now?
+- would the same architecture options look clearer if reusable conditions or world facts already had named ownership?
+
+If yes, pair the review with `game-development-condition-rule-engine` or `game-development-world-state-facts` before committing to a heavier architecture.
+
+### Test 2. Is this really an architecture problem, or a reevaluation-policy problem?
+
+Ask:
+
+- is the pain actually about interrupt timing, polling cadence, cooldown windows, or replan frequency?
+- are architecture candidates being compared through different hidden timing assumptions?
+
+If yes, pair the review with `game-development-time-source-and-tick-policy` or `game-development-state-change-notification` so the architecture is not being forced to own cadence by accident.
+
+### Test 3. Is this really an architecture problem, or an action boundary problem?
+
+Ask:
+
+- is the hard part deciding behavior structure, or deciding how actions are requested, queued, committed, or cancelled?
+- would a cleaner command surface make the architecture choice much less dramatic?
+
+If yes, pair the review with `game-development-command-flow` before promoting the architecture change as the main fix.
+
+### Test 4. Is this really a planning/scoring debate, or a missing comparison boundary?
+
+Ask:
+
+- are BT, Utility AI, and GOAP being compared because they are all plausible, or because the decision boundary was never stated clearly?
+- is the real decision about reactive priority, contextual scoring, or multi-step goal satisfaction?
+
+If the debate stays mushy, rewrite the decision boundary first, then compare only the closest two families instead of staging a five-way cage match.
+
+### Test 5. Is reference stability the hidden blocker?
+
+Ask:
+
+- do candidate designs keep depending on targets, handles, or actor references that may go stale between evaluation and execution?
+- would the architecture be easier to reason about if identity and validity boundaries were already explicit?
+
+If yes, pair the review with `game-development-entity-reference-boundary` rather than blaming the architecture choice for stale-reference bugs.
+
 ## Recommendation discipline
 
 When returning a final recommendation:

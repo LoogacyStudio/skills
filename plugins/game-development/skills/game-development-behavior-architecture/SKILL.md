@@ -1,6 +1,6 @@
 ---
 name: game-development-behavior-architecture
-description: Use when gameplay, AI, or interaction behavior is growing beyond ad-hoc conditionals and the agent must decide whether the right answer is a simpler rule flow, an FSM, a behavior tree, utility scoring, or GOAP-style planning before locking in architecture.
+description: "Use when a cross-engine gameplay task needs a Layer 2 shared-runtime architecture decision — simpler rule flow, FSM, behavior tree, utility scoring, or GOAP-style planning — and the agent must stay comparative before locking in one control pattern."
 ---
 
 # Game Development Behavior Architecture
@@ -12,6 +12,7 @@ This skill is for diagnosing behavior-system shape before committing to a design
 If the engine is unspecified, keep the recommendation engine-agnostic first. Only use engine-native guidance when the task explicitly depends on runtime features such as Godot scene-tree lifecycle, Unity authoring tools, or equivalent platform constraints.
 
 For a reusable comparison matrix covering simpler alternatives, FSMs, behavior trees, Utility AI, and GOAP, see `references/architecture-comparison.md`.
+For review-oriented criteria, boundary checks, and cross-foundation handoff prompts, see `references/behavior-architecture-review-checklist.md`.
 
 ## Purpose
 
@@ -229,8 +230,10 @@ Return the result in these sections:
 6. **Ownership and boundary design**
 7. **Shared context and data model**
 8. **Interrupt / reevaluation / replanning model**
-9. **Migration steps**
-10. **Verification notes**
+9. **Related foundations and handoff notes**
+10. **Migration steps**
+11. **Verification notes**
+12. **Assumptions and unknowns**
 
 Keep the section order stable so architecture recommendations are easy to compare across reviews, refactors, and later specialization work.
 
@@ -263,6 +266,7 @@ Keep the section order stable so architecture recommendations are easy to compar
 ## Companion files
 
 - `references/architecture-comparison.md` — reusable comparison matrix, selection heuristics, and warning signs for simpler alternatives, FSMs, behavior trees, Utility AI, and GOAP
+- `references/behavior-architecture-review-checklist.md` — reusable review criteria, boundary checks, and cross-foundation handoff prompts for architecture recommendations
 - `assets/behavior-architecture-brief.md` — reusable output template for returning the architecture recommendation artifact
 
 ## Validation

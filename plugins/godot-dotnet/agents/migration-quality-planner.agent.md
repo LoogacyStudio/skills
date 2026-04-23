@@ -1,5 +1,5 @@
 ---
-description: "Use when a Godot, .NET, addon, plugin, or export-chain upgrade needs a combined migration and quality plan that classifies the upgrade type, estimates blast radius, prioritizes staged migration steps, defines smoke and regression checks, and includes rollback thinking instead of offering a one-line upgrade recommendation, especially when checkpoint structure and verification depth are core deliverables."
+description: "Use when a Godot/.NET task needs a bounded Layer 3-style overlay worker for a combined migration and quality plan, especially when a Godot, .NET, addon, plugin, or export-chain upgrade needs staged checkpoints, smoke and regression checks, and rollback thinking rather than a one-line upgrade recommendation."
 name: "migration-quality-planner"
 tools: [read, search]
 user-invocable: false

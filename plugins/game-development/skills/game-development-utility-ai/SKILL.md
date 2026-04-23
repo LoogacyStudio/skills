@@ -1,6 +1,6 @@
 ---
 name: game-development-utility-ai
-description: Use when a gameplay or AI problem is fundamentally about choosing the most valuable option right now from several simultaneously valid candidates, and the agent must design or review a Utility AI system with explicit scorers, score ownership, tuning rules, and observability instead of drifting into opaque score soup.
+description: "Use when a cross-engine gameplay task needs a Layer 2 shared-runtime Utility AI design for choosing among several simultaneously valid candidates, and the agent must design or review a Utility AI system with explicit scorers, score ownership, tuning rules, and observability instead of drifting into opaque score soup."
 ---
 
 # Game Development Utility AI
@@ -12,6 +12,7 @@ This skill is for designing, reviewing, or refactoring Utility AI systems withou
 If the engine is unspecified, keep the recommendation engine-agnostic first. Only use engine-native guidance when the task explicitly depends on runtime features such as Unity integrations, graph tooling, or equivalent framework constraints.
 
 For reusable heuristics covering considerations, score composition, tuning, observability, and hybrid designs, see `references/utility-ai-design-guide.md`.
+For review-oriented criteria, scorer checks, and cross-foundation handoff prompts, see `references/utility-ai-review-checklist.md`.
 
 ## Purpose
 
@@ -187,14 +188,17 @@ If the best answer is **not** Utility AI, still use the template and say that ex
 
 Return the result in these sections:
 
-1. **Scoring boundary**
-2. **Candidate model**
-3. **Scorer design**
-4. **Score composition model**
-5. **Reevaluation and stability model**
-6. **Execution-system boundaries**
-7. **Implementation plan**
-8. **Verification notes**
+1. **Task summary**
+2. **Scoring boundary**
+3. **Candidate model**
+4. **Scorer design**
+5. **Score composition model**
+6. **Reevaluation and stability model**
+7. **Execution-system boundaries**
+8. **Related foundations and handoff notes**
+9. **Implementation plan**
+10. **Verification notes**
+11. **Assumptions and unknowns**
 
 Keep the section order stable so Utility AI recommendations are easy to compare across reviews and refactor passes.
 
@@ -230,6 +234,7 @@ Keep the section order stable so Utility AI recommendations are easy to compare 
 ## Companion files
 
 - `references/utility-ai-design-guide.md` — reusable heuristics for candidates, considerations, score composition, tuning, observability, and engine-aware design notes
+- `references/utility-ai-review-checklist.md` — reusable review criteria, scorer checks, and cross-foundation handoff prompts for Utility AI designs
 - `assets/utility-ai-design-brief.md` — reusable output template for returning the Utility AI design or review artifact
 
 ## Validation

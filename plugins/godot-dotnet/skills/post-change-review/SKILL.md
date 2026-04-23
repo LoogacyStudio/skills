@@ -1,6 +1,6 @@
 ---
 name: post-change-review
-description: Use when a large refactor, multi-file implementation, or new feature in a Godot/.NET project needs a post-change review across layer boundaries, engine usage, docs or content sync, and verification evidence before the work should be treated as complete.
+description: "Use when a Godot/.NET task needs a Layer 4 overlay completion review after a large refactor, multi-file implementation, or new feature, and the agent must assess layer boundaries, engine usage, docs or content sync, and verification evidence before the work should be treated as complete."
 ---
 
 # Post-Change Review

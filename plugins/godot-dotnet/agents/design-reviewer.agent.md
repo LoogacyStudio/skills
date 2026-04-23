@@ -1,5 +1,5 @@
 ---
-description: "Use when a Godot scene, system, HUD, menu, overlay, or interaction flow needs a combined design review that separates architecture issues from UX issues, identifies coupling and clarity problems, prioritizes quick wins over idealized rewrites, and returns refactor direction plus validation ideas, especially when a single-axis skill would under-preserve the mixed task."
+description: "Use when a Godot/.NET task needs a bounded Layer 3-style overlay worker for a mixed architecture-plus-UX review, especially when a scene, system, HUD, menu, overlay, or interaction flow would be under-served by a single-axis skill alone."
 name: "design-reviewer"
 tools: [read, search]
 user-invocable: false

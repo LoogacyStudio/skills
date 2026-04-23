@@ -1,6 +1,6 @@
 ---
 name: game-development-resource-transaction-system
-description: Use when gameplay, AI, interaction, or action systems are accumulating ad-hoc cost checks, spend timing, reservations, refunds, or commit-and-rollback rules, and the agent must define or review a reusable resource-transaction model with explicit ownership, affordability timing, reservation semantics, failure handling, auditability, and integration boundaries.
+description: "Use when a cross-engine gameplay task needs a Layer 1 foundation for cost, spend, reservation, refund, or commit-and-rollback semantics, and the agent must define or review a reusable resource-transaction model with explicit ownership, affordability timing, reservation semantics, failure handling, auditability, and integration boundaries."
 ---
 
 # Game Development Resource Transaction System

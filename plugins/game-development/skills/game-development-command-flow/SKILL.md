@@ -1,6 +1,6 @@
 ---
 name: game-development-command-flow
-description: Use when gameplay, input, UI, AI, tool, or network-facing action flow is accumulating direct method-call coupling, ad-hoc action queues, fragile undo/redo, or unclear request-versus-execution boundaries, and the agent must design or review a command-flow architecture with explicit command contracts, producer and executor roles, validation, timing, and history or replay rules.
+description: "Use when a cross-engine gameplay task needs a Layer 2 shared-runtime action-flow design for direct-call coupling, ad-hoc action queues, fragile undo/redo, or request-versus-execution boundaries, and the agent must design or review a command-flow architecture with explicit command contracts, producer and executor roles, validation, timing, and history or replay rules."
 ---
 
 # Game Development Command Flow
@@ -12,6 +12,7 @@ This skill is for designing, reviewing, or refactoring command-flow architecture
 If the engine is unspecified, keep the recommendation engine-agnostic first. Only use engine-native guidance when the task explicitly depends on runtime features such as Godot `InputMap`, `UndoRedo`, or controller nodes, Unity `InputAction` producers and invoker services, or equivalent framework constraints.
 
 For reusable heuristics covering command families, action-flow boundaries, validation, queue timing, undo/redo, replay, and engine-aware guidance, see `references/command-flow-design-guide.md`.
+For review-oriented criteria, contract checks, and cross-foundation handoff prompts, see `references/command-flow-review-checklist.md`.
 
 ## Purpose
 
@@ -184,16 +185,19 @@ If the best answer is **not** command flow, still use the template and say that 
 
 Return the result in these sections:
 
-1. **Action boundary**
-2. **Producer / invoker model**
-3. **Receiver / executor model**
-4. **Command contract design**
-5. **Immediate vs queue vs history decision**
-6. **Validation / cancellation / failure model**
-7. **Undo / redo / replay model**
-8. **Engine integration notes**
-9. **Migration plan**
-10. **Verification notes**
+1. **Task summary**
+2. **Action boundary**
+3. **Producer / invoker model**
+4. **Receiver / executor model**
+5. **Command contract design**
+6. **Immediate vs queue vs history decision**
+7. **Validation / cancellation / failure model**
+8. **Undo / redo / replay model**
+9. **Related foundations and handoff notes**
+10. **Engine integration notes**
+11. **Migration plan**
+12. **Verification notes**
+13. **Assumptions and unknowns**
 
 Keep the section order stable so command-flow recommendations are easy to compare across reviews and refactor passes.
 
@@ -230,6 +234,7 @@ Keep the section order stable so command-flow recommendations are easy to compar
 ## Companion files
 
 - `references/command-flow-design-guide.md` — reusable heuristics for command families, producer/executor boundaries, validation, queue timing, undo/redo, replay, and engine-aware design notes
+- `references/command-flow-review-checklist.md` — reusable review criteria, contract checks, and cross-foundation handoff prompts for command-flow designs
 - `assets/command-flow-brief.md` — reusable output template for returning the command-flow design or review artifact
 
 ## Validation

@@ -1,6 +1,6 @@
 ---
 name: godot-tscn
-description: Use when a Godot task requires reading, editing, generating, diff-reviewing, or validating `.tscn` scene files directly and the agent must preserve scene-file structure, resource ordering, node paths, connections, and editor-compatible conventions instead of treating the file as generic text.
+description: "Use when a Godot/.NET task needs a Layer 4 overlay skill for reading, editing, generating, diff-reviewing, or validating `.tscn` scene files directly, and the agent must preserve scene-file structure, resource ordering, node paths, connections, and editor-compatible conventions instead of treating the file as generic text."
 ---
 
 # Godot TSCN

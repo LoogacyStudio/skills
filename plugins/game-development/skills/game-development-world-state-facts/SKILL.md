@@ -1,6 +1,6 @@
 ---
 name: game-development-world-state-facts
-description: Use when gameplay, AI, sensing, planner, or blackboard systems are accumulating ad-hoc state labels, stale observations, unclear truth ownership, or mismatched fact freshness rules, and the agent must define or review a reusable world-state fact model with explicit source ownership, observed-vs-derived boundaries, freshness policy, write permissions, invalidation behavior, and inspection surfaces.
+description: "Use when a cross-engine gameplay task needs a Layer 1 foundation for world facts, blackboard state, stale observations, or freshness rules, and the agent must define or review a reusable world-state fact model with explicit source ownership, observed-vs-derived boundaries, freshness policy, write permissions, invalidation behavior, and inspection surfaces."
 ---
 
 # Game Development World State Facts

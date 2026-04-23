@@ -227,6 +227,55 @@ Reject or down-rank a GOAP recommendation when:
 - replanning pressure would exceed the gameplay value of planning
 - a simpler FSM, BT, or scripted sequence is already a better fit
 
+## Boundary stress tests
+
+Use these tests when GOAP feels attractive, but the real difficulty may still live in the planner's supporting semantics.
+
+### Test 1. Is planner memory actually a world-facts problem?
+
+Ask:
+
+- are design arguments really about who writes facts, how fresh they are, and when they should invalidate?
+- does the planner look confusing mainly because memory ownership is fuzzy?
+
+If yes, pair the review with `game-development-world-state-facts` before expanding the planner surface.
+
+### Test 2. Are action preconditions actually reusable condition rules?
+
+Ask:
+
+- are GOAP actions re-encoding the same eligibility checks with small variations?
+- would action design become clearer if common preconditions had stable names and inputs?
+
+If yes, pair the review with `game-development-condition-rule-engine` so planner actions do not become a graveyard of copy-pasted gate logic.
+
+### Test 3. Are action costs or effects really transaction semantics?
+
+Ask:
+
+- does an action merely require resources, or is it also deciding reservation, commit, rollback, or refund policy?
+- would the planner still make sense if resource stage semantics were owned elsewhere?
+
+If the real debate is about commitment rather than planning, pair with `game-development-resource-transaction-system`.
+
+### Test 4. Is replanning pressure really a time or invalidation problem?
+
+Ask:
+
+- are plans being discarded because the world changes meaningfully, or because cadence and invalidation rules are unspecified?
+- would GOAP look calmer if fact refresh, event triggers, or plan commitment windows were explicit?
+
+If yes, pair the design with `game-development-time-source-and-tick-policy` or `game-development-state-change-notification` before blaming the planner for churn.
+
+### Test 5. Are targets and world objects stable enough for plans to survive?
+
+Ask:
+
+- do actions depend on entity handles that may disappear or mutate before execution?
+- are plans built around stable identifiers, reacquisition, or validity checks?
+
+If not, pair the review with `game-development-entity-reference-boundary` so plan failure is not quietly driven by stale references.
+
 ## Review checklist
 
 Before approving a GOAP design, verify that:

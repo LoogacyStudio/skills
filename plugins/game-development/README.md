@@ -10,16 +10,22 @@ The intent is still restraint. These skills are supposed to help an agent make b
 > This plugin is **not** a runtime package, asset pack, engine addon, or game framework.
 > It is a repository-hosted plugin bundle of reusable agent skills and any future plugin-scoped internal workers that live under [`./agents/`](./agents/).
 
+Within the repository's current layered contract, `game-development` is the **cross-engine gameplay plugin** that currently owns **Layer 1 foundations** and **Layer 2 shared-runtime workflows**. It does **not** currently ship Layer 3 workers.
+
 ## Boundary map
 
 Use this split when deciding where to start:
 
 - **Plugin surface itself** -> this README plus [`./skills/`](./skills/) and, later if needed, [`./agents/`](./agents/) for shipped plugin material.
-- **Layer 1 foundation rollout** -> [`./layer-1-foundation-candidates.md`](./layer-1-foundation-candidates.md) for the current `3 + 2 + 2` foundation plan and rationale.
+- **Current layer map** -> [`./layer-map.md`](./layer-map.md) for the repo-facing Layer 1 / Layer 2 / Layer 3 alignment of this plugin.
+- **Repo-local eval corpus** -> [`../../evals/game-development/README.md`](../../evals/game-development/README.md) for the benchmark corpus, manifests, scoring guide, and run-evidence layout that validate this plugin's routing and boundary behavior.
+- **Layer 1 foundation rollout** -> [`../layer-1-foundation-candidates.md`](../layer-1-foundation-candidates.md) for the current `3 + 2 + 2` foundation plan and rationale.
 - **Repo-wide authoring workflows** -> [`../../.agents/skills/`](../../.agents/skills/) when the real task is skill creation, agent splitting, plan grilling, or session handoff.
 - **Repo-wide benchmark and eval workflow** -> [`../../.github/skills/`](../../.github/skills/) and [`../../.github/agents/`](../../.github/agents/) when the work is benchmark authoring, judging, clustering, reruns, or promotion review.
 
 If you're new here, the short version is simple: use a direct skill when one bounded gameplay design artifact is enough, and only add plugin-scoped workers later if the task genuinely mixes several dimensions.
+
+The plugin payload and the eval surface stay separate on purpose: plugin-facing material lives here under `plugins/game-development/`, while repeatable routing and boundary evidence lives under [`../../evals/game-development/`](../../evals/game-development/README.md).
 
 ## What this plugin is for
 
@@ -45,7 +51,7 @@ This plugin currently ships:
 - **16 reusable skills** under [`./skills/`](./skills/)
 - **0 plugin-scoped internal workers** under [`./agents/`](./agents/)
 
-### Foundation and shared-semantics skills
+### Layer 1 — Foundation and shared-semantics skills
 
 These skills give the higher-level behavior and action-flow work a shared floor. They now cover the full initial `3 + 2 + 2` rollout, not just the first three core seams.
 
@@ -59,7 +65,7 @@ These skills give the higher-level behavior and action-flow work a shared floor.
 | [`game-development-gameplay-tags-and-query`](./skills/game-development-gameplay-tags-and-query/) | Tag taxonomies, tag-driven filtering, or query semantics are starting to sprawl into label soup. | A tag-query brief with tag boundary, taxonomy rules, query semantics, ownership cautions, migration steps, and verification notes. |
 | [`game-development-state-change-notification`](./skills/game-development-state-change-notification/) | Observers, UI, AI, or caches need consistent change boundaries, payload semantics, invalidation rules, or notification batching. | A state-change brief with notification boundary, timing rules, payload policy, invalidation and batching rules, migration steps, and verification notes. |
 
-### Higher-level gameplay and architecture skills
+### Layer 2 — Higher-level gameplay and architecture skills
 
 These are the more visible design and review skills that route gameplay structure decisions.
 
@@ -75,11 +81,19 @@ These are the more visible design and review skills that route gameplay structur
 | [`game-development-fsm`](./skills/game-development-fsm/) | Gameplay, AI, UI, or interaction logic is turning into large branches, repeated enter and exit behavior, or scattered transition rules. | An FSM refactor brief with state boundary, state list, transition model, recommended shape, integration plan, rollout steps, and verification notes. |
 | [`game-development-object-pool`](./skills/game-development-object-pool/) | A hot path shows repeated spawn/despawn churn, GC spikes, or frame drops around short-lived reusable objects. | A pooling brief with candidate analysis, pool boundary and API, reset contract, engine integration notes, rollout steps, and benchmark guidance. |
 
-### Internal workers
+### Layer 3 — Internal workers
 
 No plugin-scoped internal workers are shipped yet in `plugins/game-development/agents/`.
 
-That is deliberate. The current surface is still narrow enough that the direct skill route is usually the better default.
+That is deliberate. Stage C worker review is now complete, and the current recommendation is still **workflow-first / no plugin-scoped workers yet**.
+
+Supporting review:
+
+- [`./evidence/layer-1-foundation-candidates-stage-c/stage-c-worker-justification-review.md`](./evidence/layer-1-foundation-candidates-stage-c/stage-c-worker-justification-review.md)
+
+Until fresh evidence says otherwise, the current surface is still narrow enough that the direct skill route is usually the better default.
+
+See [`./layer-map.md`](./layer-map.md) for the current semantic layer mapping and why the plugin still keeps a flat `skills/` directory for now.
 
 ## How the pieces fit together
 
@@ -96,6 +110,12 @@ The current plugin shape is easiest to read as two layers.
 - `state-change-notification` answers which changes matter, what payload they carry, and when invalidation or batching is enough.
 
 These are not engine adapters and not full gameplay frameworks. They give the higher-level skills a shared floor to stand on.
+
+Stage D reconsideration is also complete: the current seven foundations remain the stable working set, and no additional Layer 1 expansion or merge/split reshaping is justified yet.
+
+Supporting review:
+
+- [`./evidence/layer-1-foundation-candidates-stage-d/stage-d-layer-1-reconsideration-review.md`](./evidence/layer-1-foundation-candidates-stage-d/stage-d-layer-1-reconsideration-review.md)
 
 ### Higher-level routing and design skills
 
@@ -129,8 +149,13 @@ These are not engine adapters and not full gameplay frameworks. They give the hi
 game-development/
 ├── plugin.json
 ├── README.md
-├── layer-1-foundation-candidates.md
+├── layer-map.md
+├── evidence/
+│   ├── layer-1-foundation-candidates-stage-b/
+│   ├── layer-1-foundation-candidates-stage-c/
+│   └── layer-1-foundation-candidates-stage-d/
 ├── agents/
+│   └── README.md
 └── skills/
     ├── game-development-behavior-architecture/
     ├── game-development-behavior-tree/
@@ -158,6 +183,14 @@ For Market 1 cloneability, treat the market-facing plugin payload as:
 - `skills/`
 
 The foundation roadmap document is repo-facing planning material that helps explain the current rollout shape, but the long-term shipped plugin surface still centers on the manifest, README, agents, and skills.
+
+That roadmap document lives adjacent to this plugin at [`../layer-1-foundation-candidates.md`](../layer-1-foundation-candidates.md), not inside the `game-development/` folder itself.
+
+The retained `evidence/` tree is repository-facing support material for practical-pass and workflow decisions. It is useful for plugin maintenance, but it is not the main plugin-facing interaction surface.
+
+The current retained evidence directories are named after the roadmap document that produced them so Stage B, Stage C, and Stage D closeout material stays visibly tied to the same Layer 1 review thread.
+
+The current flat manifest path and flat `skills/` folder are a packaging choice, not a claim that every skill belongs to the same semantic layer or participates in a runtime dependency graph.
 
 ## How to use this plugin
 
@@ -193,6 +226,7 @@ When adding to this plugin:
 - keep skills portable across engine families unless an engine-specific tradeoff is the point
 - make trigger wording explicit in each `description`
 - keep Layer 1 foundations focused on shared semantics rather than orchestration or framework policy
+- preserve the semantic split: Layer 1 foundations, Layer 2 shared-runtime skills, and Layer 3 only when true orchestration is justified
 - prefer concrete performance evidence over instinct-only optimization advice
 - keep reusable heuristics in `references/` instead of overloading `SKILL.md`
 - add plugin-scoped workers only when one narrow skill clearly under-serves the task shape

@@ -1,6 +1,6 @@
 ---
 name: test-strategy-review
-description: Use when a Godot/.NET feature, bug fix, refactor, migration, or UI change needs a practical test strategy that separates pure .NET tests from Godot runtime-dependent coverage, prioritizes the highest-risk paths first, and returns a minimal test matrix plus regression guidance.
+description: "Use when a Godot/.NET task needs a Layer 4 overlay validation plan for a feature, bug fix, refactor, migration, or UI change, and the agent must separate pure .NET tests from Godot runtime-dependent coverage, prioritize the highest-risk paths first, and return a minimal test matrix plus regression guidance."
 ---
 
 # Test Strategy Review

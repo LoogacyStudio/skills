@@ -189,6 +189,55 @@ Reject or down-rank an events/signals recommendation when:
 - lifecycle cleanup cannot be explained clearly
 - the proposal exists mainly to hide architecture confusion behind a nicer vocabulary
 
+## Boundary stress tests
+
+Use these tests when an events/signals proposal sounds reasonable, but may actually be compensating for an adjacent concern.
+
+### Test 1. Is this really a notification, or a command/request?
+
+Ask:
+
+- is the sender announcing that something happened, or asking another system to do something?
+- does the sender actually need validation, cancellation, or a response contract?
+
+If the relationship is imperative rather than historical, pair the design with `game-development-command-flow` instead of disguising requests as events.
+
+### Test 2. Is this really an event topology issue, or a state-change invalidation issue?
+
+Ask:
+
+- do listeners care about every emission, or only about whether some derived state is now dirty?
+- is the real design question about batching, deduping, or meaningful invalidation rather than open-ended broadcast?
+
+If yes, pair the review with `game-development-state-change-notification` so event delivery does not become a noisy substitute for invalidation policy.
+
+### Test 3. Is queueing hiding a time-policy problem?
+
+Ask:
+
+- is deferred processing needed because time really matters, or because no one decided when work should run?
+- are people proposing queues to avoid choosing tick cadence, phase boundaries, or cooldown windows explicitly?
+
+If yes, pair the design with `game-development-time-source-and-tick-policy` before expanding the messaging surface.
+
+### Test 4. Is payload instability really a reference or fact problem?
+
+Ask:
+
+- will listeners process the payload immediately, or after the referenced entity may have changed or disappeared?
+- does the payload rely on implied world truth that may already be stale by the time a listener reacts?
+
+If yes, pair the review with `game-development-entity-reference-boundary` or `game-development-world-state-facts` so the communication model is not blamed for unstable data contracts.
+
+### Test 5. Is broad subscription pressure actually domain-query pressure?
+
+Ask:
+
+- are many listeners subscribing only because there is no stable tag, group, or query boundary for the affected entities or systems?
+- would explicit tags or query rules reduce the need for sprawling notification topology?
+
+If yes, pair the design with `game-development-gameplay-tags-and-query` before growing another event channel.
+
 ## Review checklist
 
 Before approving an events/signals design, verify that:

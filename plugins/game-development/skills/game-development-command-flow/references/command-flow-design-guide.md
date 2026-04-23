@@ -227,6 +227,55 @@ Reject or down-rank a command-flow recommendation when:
 - queueing exists only because the architecture is otherwise muddy
 - undo, replay, or serialization is being mentioned as decoration rather than an actual requirement
 
+## Boundary stress tests
+
+Use these tests when a command-flow proposal feels plausible, but may actually be carrying too many neighboring concerns.
+
+### Test 1. Is this really a command boundary, or just a clearer direct call?
+
+Ask:
+
+- do multiple producers truly need a shared action surface?
+- is execution meaningfully separated from the producer, or are we just wrapping one call in a ceremonial object?
+
+If the action still has one honest caller and one honest executor, keep it simple.
+
+### Test 2. Is this really a command problem, or an event topology problem?
+
+Ask:
+
+- is the real meaning "please do this" or "this already happened"?
+- are multiple listeners reacting independently, or is one executor expected to own the side effects?
+
+If the relationship is descriptive rather than imperative, pair the review with `game-development-events-and-signals` instead of forcing event traffic through command language.
+
+### Test 3. Is queued execution hiding a cadence or invalidation problem?
+
+Ask:
+
+- does the queue exist because delayed execution is intrinsic, or because tick phases, gates, or commitment windows were never stated?
+- are stale pending commands really a symptom of unspecified time policy?
+
+If yes, pair the design with `game-development-time-source-and-tick-policy` or `game-development-state-change-notification` before growing queue machinery.
+
+### Test 4. Are validation and affordability really transaction semantics?
+
+Ask:
+
+- is the command only checking whether an action may run, or is it also owning reserve, spend, rollback, or refund behavior?
+- would the same command still be valid if the resource stage semantics were defined elsewhere?
+
+If the hard part is commitment, pair the design with `game-development-resource-transaction-system` instead of burying transaction rules inside command handlers.
+
+### Test 5. Are delayed targets or handles the real risk?
+
+Ask:
+
+- will this command execute against references that may go stale before dequeue, replay, or undo?
+- are stable identifiers, reacquisition rules, or validity checks already defined?
+
+If not, pair the review with `game-development-entity-reference-boundary` so command history does not quietly depend on fragile object references.
+
 ## Review checklist
 
 Before approving a command-flow design, verify that:

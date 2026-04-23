@@ -1,6 +1,6 @@
 ---
 name: godot-godottest
-description: Use when a Godot/.NET project needs to write, run, debug, or collect coverage for C# tests using GoDotTest (Chickensoft), and the agent must produce correct test suites, scene wiring, CLI invocation, VSCode debug configs, or coverage commands instead of guessing xUnit/NUnit patterns that do not apply inside Godot runtime.
+description: "Use when a Godot/.NET task needs a Layer 4 overlay skill for GoDotTest-based C# testing, and the agent must write, run, debug, or collect coverage for suites, scene wiring, CLI invocation, VS Code debug configs, or coverage commands instead of guessing xUnit/NUnit patterns that do not apply inside Godot runtime."
 ---
 
 # Godot GoDotTest

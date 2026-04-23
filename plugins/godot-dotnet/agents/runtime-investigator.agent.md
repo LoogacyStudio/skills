@@ -1,5 +1,5 @@
 ---
-description: "Use when a Godot/.NET project will not open, C# build fails, the editor floods errors, a scene crashes while loading, runtime throws or freezes, upgrade-induced breakage appears, or the user has too many errors and needs problem framing, ranked hypotheses, evidence gaps, recommended next checks, and verification steps before attempting fixes, and when a narrow first-response triage pass would likely under-structure the ambiguity."
+description: "Use when a Godot/.NET task needs a bounded Layer 3-style overlay worker because the project will not open, C# build fails, the editor floods errors, a scene crashes while loading, runtime throws or freezes, or upgrade-induced breakage appears, and a narrow first-response triage pass would likely under-structure the ambiguity."
 name: "runtime-investigator"
 tools: [read, search]
 user-invocable: false

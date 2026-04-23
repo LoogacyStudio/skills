@@ -1,6 +1,6 @@
 ---
 name: ui-ux-review
-description: Use when a Godot HUD, menu, overlay, prompt flow, or tool UI needs a task-oriented UX review that evaluates information hierarchy, focus, interaction clarity, feedback, readability, and player cognitive load, then returns concrete quick wins, structural improvements, and verification ideas.
+description: "Use when a Godot/.NET task needs a Layer 4 overlay UX review for a HUD, menu, overlay, prompt flow, or tool UI, and the agent must evaluate information hierarchy, focus, interaction clarity, feedback, readability, and cognitive load before returning concrete quick wins, structural improvements, and verification ideas."
 ---
 
 # UI/UX Review

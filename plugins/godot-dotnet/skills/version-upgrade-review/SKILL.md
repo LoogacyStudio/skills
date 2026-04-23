@@ -1,6 +1,6 @@
 ---
 name: version-upgrade-review
-description: Use when a Godot/.NET project needs an upgrade plan that evaluates engine, SDK, C# compatibility, addons/plugins, export pipeline, verification, and rollback risk, then returns a staged sequence instead of a risky all-at-once migration.
+description: "Use when a Godot/.NET task needs a Layer 4 overlay upgrade review that evaluates engine, SDK, C# compatibility, addons/plugins, export pipeline, verification, and rollback risk, then returns a staged sequence instead of a risky all-at-once migration."
 ---
 
 # Version Upgrade Review

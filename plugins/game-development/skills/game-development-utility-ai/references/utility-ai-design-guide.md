@@ -222,6 +222,55 @@ Reject or down-rank a Utility AI recommendation when:
 - tuning visibility would be too weak to support maintenance
 - a simpler FSM, BT, or rule table is already a better fit
 
+## Boundary stress tests
+
+Use these tests when Utility AI sounds like the right answer, but the scoring layer may actually be absorbing unresolved lower-level concerns.
+
+### Test 1. Are candidate gates really reusable condition rules?
+
+Ask:
+
+- are candidates competing meaningfully, or are most of them only present because their availability logic is unclear?
+- would the scorer become simpler if impossible options were filtered by explicit reusable conditions first?
+
+If yes, pair the review with `game-development-condition-rule-engine` before adding more score math.
+
+### Test 2. Are score inputs really world-fact ownership problems?
+
+Ask:
+
+- do teams disagree about score formulas, or about whether the input facts are observed, derived, stale, or trustworthy?
+- are the same values being supplied from multiple places with slightly different semantics?
+
+If yes, pair the design with `game-development-world-state-facts` so Utility AI is not forced to clean up fact ambiguity through tuning.
+
+### Test 3. Is score instability really a cadence or invalidation problem?
+
+Ask:
+
+- is the system flickering because the math is wrong, or because reevaluation cadence and interruption windows are underspecified?
+- would the same scoring model behave better with explicit cooldowns, hysteresis timing, or change-driven reevaluation?
+
+If yes, pair the review with `game-development-time-source-and-tick-policy` or `game-development-state-change-notification` before retuning everything in circles.
+
+### Test 4. Are resource-aware scores really hiding transaction semantics?
+
+Ask:
+
+- is a score reasoning about scarcity only, or is it also quietly deciding reserve, spend, and refund behavior?
+- would the candidate comparison remain valid if commitment stages were defined elsewhere?
+
+If the real fight is about resource stage semantics, pair with `game-development-resource-transaction-system` instead of inflating the score layer.
+
+### Test 5. Are noisy targets or groups the hidden source of score confusion?
+
+Ask:
+
+- do candidate sets depend on unstable references, weak grouping rules, or ad hoc target discovery?
+- would explicit tags, query boundaries, or stable identity rules make the scoring layer much smaller?
+
+If yes, pair the design with `game-development-gameplay-tags-and-query` or `game-development-entity-reference-boundary` before widening the scorer set.
+
 ## Review checklist
 
 Before approving a Utility AI design, verify that:

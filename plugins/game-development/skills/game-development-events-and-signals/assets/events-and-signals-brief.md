@@ -46,6 +46,13 @@ Use this template when the skill returns an events/signals topology design or re
 - **Pooled / freed / disabled object handling:**
 - **Lambda / anonymous handler policy:**
 
+## Related foundations and handoff notes
+
+- **Foundation or adjacent skills already assumed by this design:**
+- **If this brief starts absorbing the wrong concern, revisit:**
+- **Review checklist or boundary checks to apply before implementation:**
+- **Most likely follow-on skill or specialization after this brief:**
+
 ## Engine integration notes
 
 ### Godot / .NET

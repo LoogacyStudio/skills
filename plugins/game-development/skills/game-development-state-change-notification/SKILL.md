@@ -1,6 +1,6 @@
 ---
 name: game-development-state-change-notification
-description: Use when gameplay, AI, UI, or coordination systems are accumulating ad-hoc change callbacks, invalidation signals, noisy observer updates, or inconsistent diff-vs-snapshot behavior, and the agent must define or review a reusable state-change notification model with explicit change boundaries, timing rules, payload shape, batching policy, and invalidation semantics.
+description: "Use when a cross-engine gameplay task needs a Layer 1 foundation for change callbacks, invalidation signals, observer updates, or diff-vs-snapshot semantics, and the agent must define or review a reusable state-change notification model with explicit change boundaries, timing rules, payload shape, batching policy, and invalidation semantics."
 ---
 
 # Game Development State Change Notification

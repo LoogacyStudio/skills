@@ -1,6 +1,6 @@
 ---
 name: game-development-object-pool
-description: Use when a game system shows frequent spawn/despawn churn, GC spikes, or frame drops around short-lived reusable objects such as bullets, VFX, floating damage numbers, recycled UI lists, or enemy waves, and the agent must decide whether pooling is truly justified before introducing reuse infrastructure.
+description: "Use when a cross-engine gameplay task needs a Layer 2 shared-runtime performance review for spawn/despawn churn, GC spikes, or short-lived reusable objects, and the agent must decide whether pooling is truly justified before introducing reuse infrastructure."
 ---
 
 # Game Development Object Pool

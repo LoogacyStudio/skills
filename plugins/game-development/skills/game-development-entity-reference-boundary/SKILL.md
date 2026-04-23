@@ -1,6 +1,6 @@
 ---
 name: game-development-entity-reference-boundary
-description: Use when gameplay, AI, UI, or cross-system flows are accumulating brittle direct references, stale event payload pointers, unclear ownership of entity identity, or unsafe handle-versus-pointer trade-offs, and the agent must define or review a reusable entity-reference boundary with explicit identity rules, lookup strategy, lifetime policy, payload safety, and debugging expectations.
+description: "Use when a cross-engine gameplay task needs a Layer 1 foundation for entity identity, stale references, payload safety, or handle-versus-pointer trade-offs, and the agent must define or review a reusable entity-reference boundary with explicit identity rules, lookup strategy, lifetime policy, payload safety, and debugging expectations."
 ---
 
 # Game Development Entity Reference Boundary

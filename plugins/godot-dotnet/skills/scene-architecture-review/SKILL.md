@@ -1,6 +1,6 @@
 ---
 name: scene-architecture-review
-description: Use when a Godot scene, UI flow, gameplay system, or scene-heavy feature needs an architecture review that evaluates scene composition, node responsibility, script ownership, signals, autoload usage, and reuse boundaries, then returns concrete refactor options without collapsing into a generic clean-code review.
+description: "Use when a Godot/.NET task needs a Layer 4 overlay architecture review of a scene, gameplay system, or UI flow specifically to assess scene composition, node responsibility, script ownership, signal boundaries, autoload fit, and UI-to-gameplay coupling, and the agent must judge maintainability seams rather than primarily evaluating readability, focus, feedback, or other UX-only concerns."
 ---
 
 # Scene Architecture Review

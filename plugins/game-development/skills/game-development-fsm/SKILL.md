@@ -1,6 +1,6 @@
 ---
 name: game-development-fsm
-description: Use when gameplay, AI, UI flow, or interaction logic is buried in growing if/else or switch branches, repeated enter/exit behavior, or scattered transition rules and the agent must decide whether to keep it simple, use a lightweight state machine, or refactor into a structured FSM without over-engineering.
+description: "Use when a cross-engine gameplay task has already narrowed to a state-machine-shaped solution and now needs a Layer 2 shared-runtime FSM refactor or sizing decision for growing if/else branches, repeated enter/exit behavior, or scattered transition rules, and the agent must choose the lightest state-machine shape — or explicitly stay simpler — without reopening a broader behavior-architecture comparison."
 ---
 
 # Game Development FSM

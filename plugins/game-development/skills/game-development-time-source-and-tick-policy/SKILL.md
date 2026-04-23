@@ -1,6 +1,6 @@
 ---
 name: game-development-time-source-and-tick-policy
-description: Use when gameplay, AI, interaction, or runtime systems are accumulating ad-hoc timer logic, update cadence assumptions, cooldown clocks, pause rules, or frame-vs-fixed-step decisions, and the agent must define or review a reusable time-source and tick policy with explicit ownership, sampling cadence, drift handling, pause and scaling semantics, and observability boundaries.
+description: "Use when a cross-engine gameplay task needs a Layer 1 foundation for timer logic, update cadence, cooldown clocks, pause rules, or frame-vs-fixed-step policy, and the agent must define or review a reusable time-source and tick policy with explicit ownership, sampling cadence, drift handling, pause and scaling semantics, and observability boundaries."
 ---
 
 # Game Development Time Source and Tick Policy

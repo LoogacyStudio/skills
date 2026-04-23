@@ -1,6 +1,6 @@
 ---
 name: game-development-events-and-signals
-description: Use when gameplay, UI, interaction, or cross-system flow is accumulating signal spaghetti, hidden event coupling, duplicate subscriptions, or unclear direct-call vs event boundaries, and the agent must design or review an events-and-signals topology with explicit ownership, lifecycle, payload, and traceability rules.
+description: "Use when a cross-engine gameplay task needs a Layer 2 shared-runtime communication-topology review for signal spaghetti, hidden event coupling, duplicate subscriptions, or direct-call versus event boundaries, and the agent must design or review an events-and-signals topology with explicit ownership, lifecycle, payload, and traceability rules."
 ---
 
 # Game Development Events and Signals
@@ -12,6 +12,7 @@ This skill is for designing, reviewing, or refactoring event and signal topology
 If the engine is unspecified, keep the recommendation engine-agnostic first. Only use engine-native guidance when the task explicitly depends on runtime features such as Godot signals, C# event lifecycle, UnityEvent inspector wiring, or equivalent framework constraints.
 
 For reusable heuristics covering topology, payload design, lifecycle, observability, and escalation to queues, see `references/events-and-signals-design-guide.md`.
+For review-oriented criteria, topology checks, and cross-foundation handoff prompts, see `references/events-and-signals-review-checklist.md`.
 
 ## Purpose
 
@@ -184,14 +185,17 @@ If the best answer is **not** events or signals, still use the template and say 
 
 Return the result in these sections:
 
-1. **Communication boundary**
-2. **Direct call vs event vs queue decision**
-3. **Publisher/subscriber matrix**
-4. **Event contract design**
-5. **Lifecycle and subscription model**
-6. **Engine integration notes**
-7. **Migration plan**
-8. **Verification notes**
+1. **Task summary**
+2. **Communication boundary**
+3. **Direct call vs event vs queue decision**
+4. **Publisher/subscriber matrix**
+5. **Event contract design**
+6. **Lifecycle and subscription model**
+7. **Related foundations and handoff notes**
+8. **Engine integration notes**
+9. **Migration plan**
+10. **Verification notes**
+11. **Assumptions and unknowns**
 
 Keep the section order stable so event-topology recommendations are easy to compare across reviews and refactor passes.
 
@@ -231,6 +235,7 @@ Keep the section order stable so event-topology recommendations are easy to comp
 ## Companion files
 
 - `references/events-and-signals-design-guide.md` — reusable heuristics for choosing direct call vs signal vs queue, shaping event contracts, lifecycle rules, observability, and engine-aware guidance
+- `references/events-and-signals-review-checklist.md` — reusable review criteria, topology checks, and cross-foundation handoff prompts for event and signal designs
 - `assets/events-and-signals-brief.md` — reusable output template for returning the event-topology design or review artifact
 
 ## Validation

@@ -64,6 +64,13 @@ Use this template when the skill returns a Utility AI design or review recommend
 
 -
 
+## Related foundations and handoff notes
+
+- **Foundation or adjacent skills already assumed by this design:**
+- **If this brief starts absorbing the wrong concern, revisit:**
+- **Review checklist or boundary checks to apply before implementation:**
+- **Most likely follow-on skill or specialization after this brief:**
+
 ## Implementation plan
 
 1.

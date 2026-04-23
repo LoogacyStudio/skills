@@ -1,6 +1,6 @@
 ---
 name: runtime-triage
-description: Use when a Godot/.NET project has a build failure, editor error, runtime exception, crash, scene load failure, startup failure, or unexplained bad behavior and the agent must classify the symptom, identify the most likely layer, request only the minimum missing evidence, and return a focused triage report before broader investigation structure is justified.
+description: "Use when a Godot/.NET task needs a Layer 4 overlay first-response diagnosis for a build failure, editor error, runtime exception, crash, scene load failure, startup failure, or unexplained bad behavior, and the agent must classify the symptom, identify the most likely layer, request only the minimum missing evidence, and return a focused triage report before broader investigation structure is justified."
 ---
 
 # Runtime Triage

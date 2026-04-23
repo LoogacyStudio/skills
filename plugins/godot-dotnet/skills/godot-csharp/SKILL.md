@@ -1,6 +1,6 @@
 ---
 name: godot-csharp
-description: Use when a Godot/.NET task involves writing, refactoring, or translating C# gameplay, tool, editor, resource, or node code and the agent must stay idiomatic to Godot's C# API, avoid GDScript-only assumptions, choose the right engine-facing patterns, and return implementation guidance plus validation notes.
+description: "Use when a Godot/.NET task needs a Layer 4 overlay skill for writing, refactoring, or translating C# gameplay, tool, editor, resource, or node code, and the agent must stay idiomatic to Godot's C# API, avoid GDScript-only assumptions, choose the right engine-facing patterns, and return implementation guidance plus validation notes."
 ---
 
 # Godot C#

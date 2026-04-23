@@ -54,6 +54,13 @@ Use this template when the skill returns a recommendation.
 - **How in-progress work is interrupted or preserved:**
 - **Failure mode to guard against:**
 
+## Related foundations and handoff notes
+
+- **Foundation or adjacent skills already assumed by this design:**
+- **If this brief starts absorbing the wrong concern, revisit:**
+- **Review checklist or boundary checks to apply before implementation:**
+- **Most likely follow-on skill or specialization after this brief:**
+
 ## Migration steps
 
 1.
@@ -66,3 +73,9 @@ Use this template when the skill returns a recommendation.
 - **What to test:**
 - **What regressions to watch:**
 - **What signals would mean the architecture is still too heavy or too light:**
+
+## Assumptions and unknowns
+
+- **Assumption 1:**
+- **Unknown 1:**
+- **Smallest follow-up check if confidence is low:**

@@ -420,3 +420,6 @@ FodyWeavers.xsd
 # Copilot generated files
 memories/*
 .vscode/*
+
+# evidence files from plugin runs
+/plugins/**/evidence/*

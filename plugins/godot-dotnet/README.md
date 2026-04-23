@@ -11,12 +11,15 @@ This plugin collects a focused set of implementation-guidance, review, and plann
 > Shared benchmark framework rules such as capability registry, corpus discovery, corpus adapter contract, lifecycle boundaries, and run-record finalization conventions live under [`../../.github/skills/benchmark-core/`](../../.github/skills/benchmark-core/).
 > Repo-level benchmark orchestration agents such as [`benchmark-director`](../../.github/agents/benchmark-director.agent.md) live under [`../../.github/agents/`](../../.github/agents/) and are **not** part of this plugin's shipped agent surface.
 
+Within the repository's current layered contract, `godot-dotnet` is the **Layer 4 overlay plugin** for Godot/.NET-specific implementation, review, validation, and upgrade work. Its shipped workers are bounded **Layer 3-style** plugin workers inside that overlay surface.
+
 ## Boundary map
 
 Use this split when deciding where to start:
 
 - **Shared benchmark framework** → [`../../.github/skills/benchmark-core/`](../../.github/skills/benchmark-core/) for capability registry, corpus discovery, corpus adapter contract, lifecycle boundaries, and run-record finalization conventions.
 - **Corpus context and stored evidence** → [`../../evals/godot-dotnet/README.md`](../../evals/godot-dotnet/README.md) for canonical docs by role, active manifests, bounded slices, and benchmark/run-evidence entry points.
+- **Current layer map** → [`./layer-map.md`](./layer-map.md) for the repo-facing Layer 4 / bounded Layer 3 alignment of this plugin.
 - **Plugin surface itself** → this README plus [`./agents/`](./agents/) and [`./skills/`](./skills/) for shipped plugin skills, shipped plugin-scoped workers, and market-facing payload boundaries.
 
 If you're new here, the short version is simple: use a **skill** for narrow implementation, review, or planning work, and use a plugin-scoped **worker** when the task genuinely mixes dimensions and benefits from stronger structure.
@@ -42,14 +45,18 @@ The skills in this plugin are designed to help agents:
 
 ## What is included
 
-This plugin has two layers:
+This plugin currently aligns to two semantic layers inside the repository model:
 
-1. **Reusable skills** — portable implementation/review/planning methods
-2. **Internal workers** — read-only plugin-scoped agents in [`./agents/`](./agents/) that compose those skills into bounded specialist roles
+1. **Layer 4 overlay skills** — stack-specific implementation/review/planning methods for Godot, .NET, C#, and `.tscn`
+2. **Bounded Layer 3-style internal workers** — read-only plugin-scoped agents in [`./agents/`](./agents/) that compose those overlay skills into specialist roles
+
+Cross-engine Layer 1 and Layer 2 ownership stays outside this plugin.
 
 ### Internal workers
 
 These are meant for **coordinator-driven subagent use**, not direct end-user invocation.
+
+Inside the repository's layer model, these are **bounded Layer 3-style workers** that live inside a Layer 4 overlay plugin.
 
 These are the only plugin-scoped internal workers currently shipped in `plugins/godot-dotnet/agents/`:
 
@@ -76,6 +83,8 @@ These are the only plugin-scoped internal workers currently shipped in `plugins/
 | [`post-change-review`](./skills/post-change-review/) | A large refactor, multi-file implementation, or new feature needs a completion-minded post-change review before the work should be treated as done. | A structured readiness review covering boundaries, engine usage, docs/content/config sync, evidence quality, and next follow-up actions. |
 | [`ui-ux-review`](./skills/ui-ux-review/) | A HUD, menu, overlay, prompt flow, or in-game tool UI needs usability review. | A task-oriented UX review with quick wins, structural improvements, and verification ideas. |
 | [`version-upgrade-review`](./skills/version-upgrade-review/) | A Godot, .NET SDK, package, addon, or export pipeline upgrade needs safer sequencing. | A staged upgrade plan with risk areas, validation gates, and rollback thinking. |
+
+These skills should be treated as **Layer 4 overlay skills**: they constrain how Godot/.NET reality lands in the stack, but they do not own the lower-layer meaning of cross-engine gameplay semantics.
 
 ## Where should I start?
 
@@ -136,6 +145,8 @@ It reflects the current repo evidence for when `godot-dotnet` should stay on a n
 - `migration-quality-planner` is the **upgrade-risk + validation** worker.
 
 The workers are intentionally read-only and bounded. They do not replace implementation agents. Their job is to improve decision quality before fixes, refactors, or upgrades begin.
+
+For the current semantic layer split and ownership cautions, see [`./layer-map.md`](./layer-map.md).
 
 ## Skill coverage at a glance
 
@@ -252,6 +263,7 @@ Primary upgrade domains:
 godot-dotnet/
 ├── plugin.json
 ├── README.md
+├── layer-map.md
 ├── agents/
 │   ├── design-reviewer.agent.md
 │   ├── migration-quality-planner.agent.md
@@ -279,6 +291,8 @@ Each skill typically uses:
 - `SKILL.md` for the main operating workflow and triggering guidance
 - `references/` for reusable heuristics, notes, and checklists
 - `assets/` for report templates, matrices, and reusable output skeletons
+
+The flat `skills/` and `agents/` directories are a packaging choice, not a claim that this plugin owns Layer 1 or Layer 2 semantics.
 
 ## Repo-local corpus adapter
 
@@ -331,6 +345,7 @@ When adding to this plugin:
 - keep each skill narrow, reusable, and trigger-oriented
 - prefer review and planning workflows that produce concrete outputs
 - encode Godot-specific concerns explicitly instead of falling back to generic clean-code advice
+- keep cross-engine gameplay semantics in cross-engine surfaces such as `plugins/game-development/`; this plugin is an overlay, not a foundation owner
 - move bulky reusable material into `references/` or `assets/` rather than overloading `SKILL.md`
 - keep filenames and folder names stable so agents can discover them reliably
 - do **not** add new benchmark corpora, benchmark runs, or other repo-local eval evidence under `plugins/`; keep the long-term market-facing plugin surface limited to the manifest, README, agents, and skills
