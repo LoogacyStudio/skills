@@ -39,25 +39,3 @@ For reusable benchmark agents and benchmark skills, treat [`benchmark-core`](./s
 - keep templates, examples, and working skeletons in the skill layer
 
 If the current repo has one concrete corpus implementation, document it in repo-local corpus adapters rather than baking repo-specific paths into reusable benchmark components.
-
-## Layered skills repo contract
-
-Source of truth:
-
-- [`../layered-skills-vscode-model.md`](../layered-skills-vscode-model.md)
-
-Repository default mapping:
-
-- **Layer 0** → repo-level instructions and hooks
-- **Layer 1** → foundation skills
-- **Layer 2** → shared-runtime skills
-- **Layer 3** → custom agents and real orchestration
-- **Layer 4** → plugin-scoped overlay skills and agents
-
-Working rules:
-
-- treat plugins as packaging and discovery surfaces, not execution graphs
-- treat `depends_on` as documentation unless backed by an explicit orchestration path
-- promote true delegation, context isolation, and multi-role synthesis to custom agents
-- do not let Layer 2 redefine Layer 1 semantics
-- do not let Layer 4 overlays silently rewrite lower-layer meanings

@@ -1,0 +1,12 @@
+{
+    "hooks": {
+        "PostToolUse": [
+            {
+                "type": "command",
+                "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/copilot-hooks/post-tool-quality.ps1",
+                "windows": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts\\copilot-hooks\\post-tool-quality.ps1",
+                "timeout": 60
+            }
+        ]
+    }
+}

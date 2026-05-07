@@ -1,0 +1,12 @@
+{
+    "hooks": {
+        "PreCompact": [
+            {
+                "type": "command",
+                "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/copilot-hooks/precompact-save-state.ps1",
+                "windows": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts\\copilot-hooks\\precompact-save-state.ps1",
+                "timeout": 10
+            }
+        ]
+    }
+}

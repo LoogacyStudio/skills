@@ -1,0 +1,12 @@
+{
+    "hooks": {
+        "Stop": [
+            {
+                "type": "command",
+                "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/copilot-hooks/stop-closeout.ps1",
+                "windows": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts\\copilot-hooks\\stop-closeout.ps1",
+                "timeout": 10
+            }
+        ]
+    }
+}

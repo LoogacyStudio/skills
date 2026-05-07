@@ -1,6 +1,6 @@
-# Repo benchmark skills
+# Repo shared skills
 
-These skills live under `.github/skills/`. Think of this folder as the repo-shared entry layer for benchmark and eval work.
+These skills live under `.github/skills/`. Think of this folder as the repo-shared entry layer for benchmark/eval work **and** shared governance / customization workflows.
 
 Framework rules for the benchmark system now live in [`benchmark-core/`](./benchmark-core/).
 
@@ -8,6 +8,7 @@ If you want the current repo's corpus context first, start from the repo-local c
 
 ## Start here
 
+- Governance-aware customization authoring, review, and controlled self-evolution work → [`skill-authoring`](./skill-authoring/)
 - Benchmark framework rules, capability registry, corpus discovery, adapter contract, lifecycle map, and run finalization rules → [`benchmark-core`](./benchmark-core/)
 - Repo-local corpus context → [`../../evals/godot-dotnet/README.md`](../../evals/godot-dotnet/README.md)
 - Specialized benchmark work → choose one of the skills below
@@ -16,6 +17,7 @@ If you want the current repo's corpus context first, start from the repo-local c
 
 | Skill | Use when | Main output |
 | :---- | :------- | :---------- |
+| [`skill-authoring`](./skill-authoring/) | A repo customization or governance artifact needs a controlled update, review, or new scaffold, especially for skills, prompts, agents, hooks, instructions, learning notes, or change-log discipline. | Controlled customization change package |
 | [`benchmark-core`](./benchmark-core/) | The benchmark framework itself needs guidance: capability registry, corpus discovery, corpus adapter rules, lifecycle boundaries, or run-record finalization conventions. | Framework / routing / portability guidance |
 | [`benchmark-author-skill-evals`](./benchmark-author-skill-evals/) | A reusable agent skill needs a small, scoreable eval pack with success criteria, trigger prompts, deterministic checks, rubric-based qualitative grading, and extension hooks. | Skill eval pack |
 | [`benchmark-author-item`](./benchmark-author-item/) | A new benchmark item, seed draft, or ad hoc eval case needs to be normalized into the canonical benchmark-item format. | Benchmark item draft |

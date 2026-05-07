@@ -398,6 +398,16 @@ FodyWeavers.xsd
 
 # VS Code files for those working on multiple tools
 .vscode/*
+
+# AI agent local logs
+.ai-logs/*
+!.ai-logs/.gitkeep
+
+# Additional local secret patterns
+.env.*
+*.pem
+id_rsa
+id_ed25519
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -417,9 +427,8 @@ FodyWeavers.xsd
 *.msm
 *.msp
 
-# Copilot generated files
-memories/*
-.vscode/*
+# Copilot memory
+/memories/repo/**
 
 # evidence files from plugin runs
 /plugins/**/evidence/*

@@ -1,0 +1,12 @@
+{
+    "hooks": {
+        "PreToolUse": [
+            {
+                "type": "command",
+                "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/copilot-hooks/audit-log.ps1",
+                "windows": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts\\copilot-hooks\\audit-log.ps1",
+                "timeout": 5
+            }
+        ]
+    }
+}
