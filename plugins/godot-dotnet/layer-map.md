@@ -16,7 +16,7 @@ It exists to make the plugin's overlay role explicit **without confusing plugin 
 
 | Layer | Current ownership in this plugin | Current surface |
 | :---- | :------------------------------- | :-------------- |
-| Layer 4 | Godot/.NET/C#/.tscn implementation, review, testing, and upgrade overlays | `godot-csharp`, `godot-tscn`, `godot-godottest`, `runtime-triage`, `scene-architecture-review`, `abstraction-integrity-review`, `test-strategy-review`, `post-change-review`, `ui-ux-review`, `version-upgrade-review` |
+| Layer 4 | Godot/.NET/C#/.tscn implementation, review, testing, and upgrade overlays | `godot-csharp`, `godot-tscn`, `godot-godottest`, `godot-dotnet-thread`, `runtime-triage`, `scene-architecture-review`, `abstraction-integrity-review`, `test-strategy-review`, `post-change-review`, `ui-ux-review`, `version-upgrade-review` |
 | Layer 3-style internal workers | bounded plugin-scoped orchestration inside the overlay plugin | `runtime-investigator`, `design-reviewer`, `migration-quality-planner` |
 | Layer 1 | cross-engine shared semantics | not owned here; prefer cross-engine surfaces such as `plugins/game-development/` when the task is really about gameplay semantics rather than Godot/.NET landing constraints |
 | Layer 2 | cross-engine runtime-pattern workflows | not owned here as primary capability; this plugin constrains or reviews how those patterns land in Godot/.NET stacks |

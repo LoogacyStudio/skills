@@ -2,7 +2,7 @@
 
 Reusable agent skills for **Godot 4.6**, **.NET 10**, `.tscn` scene-text, and **C#** workflows.
 
-This plugin collects a focused set of implementation-guidance, review, and planning skills for Godot/.NET projects. It is meant for coding agents that need stronger judgment around idiomatic Godot C# code, direct `.tscn` scene-file work, troubleshooting, scene architecture, testing strategy, UI/UX quality, and upgrade planning.
+This plugin collects a focused set of implementation-guidance, review, and planning skills for Godot/.NET projects. It is meant for coding agents that need stronger judgment around idiomatic Godot C# code, direct `.tscn` scene-file work, threading and async safety, troubleshooting, scene architecture, testing strategy, UI/UX quality, and upgrade planning.
 
 > [!NOTE]
 > This plugin is **not** a Godot addon, runtime library, or NuGet package.
@@ -37,6 +37,7 @@ The skills in this plugin are designed to help agents:
 
 - implement idiomatic Godot C# that respects the engine's binding surface and editor workflow
 - read and edit `.tscn` scene files without breaking resource, node-path, or connection integrity
+- review threading, async, background loading, and main-thread marshaling workflows without smuggling live scene-tree mutation into workers
 - classify failures before making risky fixes
 - review scene and system boundaries with Godot-specific concerns in mind
 - choose practical, layered test coverage
@@ -76,6 +77,7 @@ These are the only plugin-scoped internal workers currently shipped in `plugins/
 | [`godot-csharp`](./skills/godot-csharp/) | A task involves writing, refactoring, or translating Godot C# code and the agent must stay idiomatic to Godot's C# API instead of drifting into generic .NET or GDScript habits. | A structured implementation brief covering engine context, recommended patterns, API mapping notes, pitfalls, and validation / rebuild steps. |
 | [`godot-tscn`](./skills/godot-tscn/) | A task involves reading, editing, generating, or reviewing `.tscn` scene files directly and the agent must preserve scene-file structure instead of treating it as generic text. | A structured scene-edit brief covering file structure, reference surfaces, safe edit steps, risks, and validation. |
 | [`godot-godottest`](./skills/godot-godottest/) | A Godot/.NET project uses GoDotTest and needs concrete suite scaffolding, scene wiring, debug setup, coverage guidance, or GodotTestDriver-based runtime testing patterns. | A framework-specific GoDotTest implementation guide with setup rules, runtime test scaffolds, validation checks, and companion assets for suites and drivers. |
+| [`godot-dotnet-thread`](./skills/godot-dotnet-thread/) | A task involves Godot/.NET threading, async/await, `Task.Run`, `WorkerThreadPool`, threaded resource loading, main-thread marshaling, frame hitches, or node lifetime after await specifically where Godot engine state, `SceneTree`, `Node` / `Resource` lifetime, or main-thread apply is at risk. | A structured threading review or execution plan covering Godot-bound task classification, risk map, safe flow, marshaling, cancellation/lifetime, anti-patterns, and validation. |
 | [`runtime-triage`](./skills/runtime-triage/) | A Godot/.NET project is broken, noisy, crashing, or behaving incorrectly and the failure layer is still unclear. | A focused triage report with likely layers, ranked causes, missing evidence, and the smallest useful next probe. |
 | [`scene-architecture-review`](./skills/scene-architecture-review/) | A scene, UI flow, or gameplay system feels overloaded, tightly coupled, or hard to change safely. | A structured architecture review with findings, risk areas, and concrete refactor directions. |
 | [`abstraction-integrity-review`](./skills/abstraction-integrity-review/) | A feature extension, touched-code refactor, or in-flight implementation is starting to stretch an abstraction through flags, boundary leakage, compatibility drag, or responsibility drift. | A structured abstraction-health review with decay risks, containment options, and a clear integrity verdict. |
@@ -106,6 +108,7 @@ These skills should be treated as **Layer 4 overlay skills**: they constrain how
 - **You need to implement or refactor Godot C# code without drifting into GDScript-first or generic .NET patterns** → [`godot-csharp`](./skills/godot-csharp/)
 - **You need to read, edit, or review a `.tscn` scene file without breaking structure or references** → [`godot-tscn`](./skills/godot-tscn/)
 - **You need to write, run, debug, or cover GoDotTest suites, especially with GodotTestDriver-backed integration/UI tests** → [`godot-godottest`](./skills/godot-godottest/)
+- **You need to review or plan Godot/.NET threading, async, background loading, main-thread marshaling, or node lifetime after await where Godot engine state or lifecycle is part of the risk** → [`godot-dotnet-thread`](./skills/godot-dotnet-thread/)
 - **Something is failing and you need a focused first-response diagnosis** → [`runtime-triage`](./skills/runtime-triage/)
 - **A scene or system feels structurally messy** → [`scene-architecture-review`](./skills/scene-architecture-review/)
 - **A feature or refactor is stretching an abstraction through flags, branching, or compatibility drag** → [`abstraction-integrity-review`](./skills/abstraction-integrity-review/)
@@ -131,6 +134,7 @@ It reflects the current repo evidence for when `godot-dotnet` should stay on a n
 | :--------- | :--------------------- | :-- |
 | idiomatic Godot C# implementation or refactor with engine-facing API choices | skill (`godot-csharp`) | The narrow route is best when the main risk is choosing the wrong binding, lifecycle, export, signal, or collection pattern. |
 | direct `.tscn` scene-file edit, merge fix, or file-aware diff review | skill (`godot-tscn`) | The narrow route is best when the main risk is breaking section order, resource IDs, parent paths, `NodePath`s, or connections. |
+| threading, async/await, background loading, worker result application, or node lifetime after await with a Godot engine/lifecycle boundary | skill (`godot-dotnet-thread`) | The narrow route is best when the main risk is deciding what can safely leave the Godot main thread and how results return without stale-node or scene-tree mutation hazards. Do not use this route for generic .NET concurrency without a Godot boundary. |
 | narrow first-response failure framing with one small next probe | skill (`runtime-triage`) | The narrow route usually preserves the smallest useful diagnostic move. |
 | failure framing where evidence is still messy after first-response triage | worker (`runtime-investigator`) | The worker earns its cost when stronger ambiguity management materially helps. |
 | mixed architecture + UX review | worker (`design-reviewer`) | The worker preserves both dimensions instead of under-serving one axis. |
@@ -173,6 +177,18 @@ Primary scene-file concerns:
 5. `connections and inherited-scene metadata`
 6. `save-time normalization and default-value omission`
 7. `editor load and runtime smoke validation`
+
+### `godot-dotnet-thread`
+
+Primary threading concerns:
+
+1. `task classification and execution pressure`
+2. `Godot main-thread touchpoint detection`
+3. `Task / Thread / WorkerThreadPool / threaded loading / frame-slicing choice`
+4. `Snapshot -> Work -> Result -> Main-thread apply flow`
+5. `continuation and marshaling policy`
+6. `cancellation, owner lifetime, and stale-result handling`
+7. `anti-pattern detection and validation planning`
 
 ### `runtime-triage`
 
@@ -333,7 +349,7 @@ Practical rule of thumb:
 Current plugin manifest:
 
 - `name`: `godot-dotnet`
-- `version`: `0.1.2`
+- `version`: `0.1.3`
 - `description`: `Agent skills for Godot 4.6, .NET 10, and C# coding-agent workflows.`
 
 See [`plugin.json`](./plugin.json) for the source of truth.
